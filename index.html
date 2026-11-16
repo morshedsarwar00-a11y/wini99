@@ -281,7 +281,7 @@
       .ts-cell .u{font-family:var(--mono);font-size:clamp(.54rem,1.2vh,.66rem);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#ffd9de;margin-top:4px}
       .ts-sep{font-family:var(--mono);font-weight:700;font-size:clamp(1.1rem,3.6vh,1.7rem);color:#fff;padding-top:clamp(3px,.8vh,6px)}
 
-      /* countdown states: waiting (no running countdown) vs live (final 2 minutes, test window) */
+      /* countdown states: waiting (no running countdown) vs live (final 60 minutes) */
       .ts-right{margin-left:auto;display:flex;align-items:center;gap:clamp(10px,1.6vw,18px);flex:none}
       .ts-right .ts-count{margin-left:0}
       .live-badge{
@@ -1374,13 +1374,13 @@
             <div class="ts-info">
               <div class="ts-label" id="cdLabel">Next Draw</div>
               <div class="ts-date" id="nextDrawTitle">Monday, 16 November 2026</div>
-              <div class="ts-note" id="cdNote">1st &amp; 16th monthly · 2:30pm Qatar time (AST) · countdown starts 2 min before · sample schedule</div>
+              <div class="ts-note" id="cdNote">1st &amp; 16th monthly · 2:30pm Qatar time (AST) · countdown starts 60 min before · sample schedule</div>
             </div>
             <div class="ts-right">
               <span class="live-badge" id="liveBadge"><span class="lb-dot" aria-hidden="true"></span> Live Draw Soon</span>
               <div class="ts-wait" id="tsWait" aria-label="Draw time">
                 <div class="tw-time">2:30 PM AST</div>
-                <div class="tw-sub">Countdown starts 2 min before</div>
+                <div class="tw-sub">Countdown starts 60 min before</div>
               </div>
               <div class="ts-count" aria-label="Draw starts in">
                 <div class="ts-cell ts-cell-days"><div class="v" id="cdD">–</div><div class="u">Days</div></div>
@@ -1721,7 +1721,7 @@
 
         <div class="sa-section">
           <h3><span class="sa-num">2</span>Countdown Time</h3>
-          <p class="sa-current">Current setting: countdown starts <b id="saCdCurrent">2 minutes</b> before the draw.</p>
+          <p class="sa-current">Current setting: countdown starts <b id="saCdCurrent">60 minutes</b> before the draw.</p>
           <div class="sa-form">
             <span class="sa-form-label">Countdown starts</span>
             <div class="sa-field">
@@ -1755,7 +1755,7 @@
         <button class="draw-close" id="drawModalClose" type="button" aria-label="Close draw preview">&times;</button>
         <span class="dm-kicker" id="dmKicker">Live Draw Soon · Sample / Demo</span>
         <h2 id="drawModalTitle">Draw Starts In</h2>
-        <p class="dm-sub" id="dmSub">Demo preview — the real 2-minute countdown, compressed into a few seconds. This preview does not change the real draw time or the real results.</p>
+        <p class="dm-sub" id="dmSub">Demo preview — the real 60-minute countdown, compressed into a few seconds. This preview does not change the real draw time or the real results.</p>
         <div id="dmCountWrap">
           <div class="dm-timer" id="dmTimer">02:00</div>
           <div class="dm-timer-label">Minutes : Seconds — until the draw</div>
@@ -2066,7 +2066,7 @@
       /* ---- next-draw countdown + big animated ticket preview ----
          Sample schedule: draws 1st & 16th, 2:30pm Qatar time (Asia/Qatar).
          Before the countdown window (Super Admin "Countdown Time" setting,
-         default 2 minutes) there is NO running countdown — only the draw
+         default 60 minutes) there is NO running countdown — only the draw
          date/time is shown. The live HH:MM:SS countdown starts automatically
          exactly that many minutes before the draw, and at zero the winning ticket
          video plays, then the number is revealed big. The Preview button lives
@@ -2232,12 +2232,12 @@
           dmTitle.textContent = "Draw Starts In";
           dmSkip.style.display = "";
           if (dmSkip) dmSkip.textContent = "Skip Video";
-          dmStatus.textContent = isDemo ? "Demo countdown running — 2 minutes at demo speed…" : "Draw starts in…";
-          var remain = 120; /* 02:00 */
-          dmTimer.textContent = "02:00";
+          dmStatus.textContent = isDemo ? "Demo countdown running — " + leadText() + " at demo speed…" : "Draw starts in…";
+          var remain = countdownLeadMin * 60; /* full window, in seconds */
+          dmTimer.textContent = pad(Math.floor(remain / 60)) + ":" + pad(remain % 60);
           if (reduced){ later(reveal, 500); return; }
           var iv = setInterval(function(){
-            remain -= 2; /* demo speed: the full 2 minutes in ~3.6s */
+            remain -= countdownLeadMin; /* demo speed: the full window in ~3.6s */
             if (remain <= 0){
               clearInterval(iv);
               dmTimer.textContent = "00:00";
@@ -2254,7 +2254,7 @@
           lastFocus = document.activeElement;
           dmKicker.textContent = demo ? "Live Draw Soon · Sample / Demo Preview" : "Draw Time · Sample / Demo";
           dmSub.textContent = demo
-            ? "Demo preview — the real 2-minute countdown, compressed into a few seconds. This preview does not change the real draw time or the real results."
+            ? "Demo preview — the real " + leadText() + " countdown, compressed into a few seconds. This preview does not change the real draw time or the real results."
             : "The draw time has arrived — revealing the winning ticket number. Sample / demo number until official Qatar draw data is available.";
           modal.hidden = false;
           document.getElementById("drawModalClose").focus();
@@ -2295,9 +2295,9 @@
         var timeFmt = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Qatar", hour: "numeric", minute: "2-digit", hour12: true });
         var revealedFor = 0;
         /* Countdown window: how long before the draw the live HH:MM:SS countdown
-           appears. Default 2 minutes (test setting) — the Super Admin panel's
+           appears. Default 60 minutes — the Super Admin panel's
            "Countdown Time" setting changes it for this browser session. */
-        var countdownLeadMin = 2;
+        var countdownLeadMin = 60;
         function leadMs(){ return countdownLeadMin * 60 * 1000; }
         function leadText(){ return countdownLeadMin === 1 ? "1 minute" : countdownLeadMin + " minutes"; }
         function leadShort(){ return countdownLeadMin === 1 ? "1 min" : countdownLeadMin + " min"; }
