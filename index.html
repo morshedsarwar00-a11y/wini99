@@ -1345,6 +1345,27 @@
         .page2 .app-sec{padding-top:6px;padding-bottom:6px}
         .page2 .app-cta .btn-buy{min-height:44px}
       }
+
+      /* ===== FINAL 7 — hero slack moves down to the Page 1 cards =====
+         The hero is now a slim one-line band (FINAL 4), but it still had
+         flex:1, so on taller screens it swallowed every leftover pixel
+         and centred the band in a tall empty cream field — a big gap
+         between the hero buttons and the countdown strip, with the three
+         cards below pressed against the fold. The hero now takes only
+         the height its band needs (plus a small pad under the header),
+         and the bottom row absorbs the freed space instead: the strip
+         sits straight under the buttons and the Results / Previous Draw /
+         Checker panels grow taller, their margin-top:auto rows spreading
+         the content into the extra room. Desktop widths only — phones
+         keep their tuned centred hero. Nothing else changes. */
+      @media (min-width:761px){
+        .hero{flex:0 0 auto;padding-top:clamp(6px,1.4vh,14px)}
+        .bottom-row{flex:1 1 auto;display:flex}
+        .bottom-row .wrap{flex:1 1 auto;min-height:0}
+      }
+      @media (min-width:761px) and (max-height:760px){
+        .hero{padding-top:4px}
+      }
     </style>
   </head>
   <body>
