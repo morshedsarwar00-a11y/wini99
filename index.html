@@ -1265,18 +1265,17 @@
         .checker form{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
       }
 
-      /* Defect 3 — Page 2: the grid already stretches to the viewport; let
-         the columns fill it (cards and table grow, FAQ rows spread) instead
-         of leaving one big navy void above the disclosure and footer */
-      .draws-stack{flex:1 1 auto;grid-template-rows:repeat(3,minmax(0,1fr))}
+      /* Defect 3 (revised) — Page 2 cards and FAQ boxes hug their content:
+         no forced equal-height 1fr rows stretching the draw cards, no
+         margin-top:auto pushing the FIRST 3 / LAST 3 row to the bottom of
+         a stretched card (the ~150px white gap), and no 1fr FAQ rows
+         leaving blank space under each question. The stacks still flex so
+         the columns keep their height and the footer stays put; the cards
+         and boxes themselves are content-height, packed from the top. */
+      .draws-stack{flex:1 1 auto;align-content:start}
       .draw-card{display:flex;flex-direction:column}
-      .draw-card .d-meta{margin-top:auto}
-      .faq-list{flex:1 1 auto}
+      .faq-list{flex:1 1 auto;align-content:start}
       table.prizes{flex:1 1 auto}
-      @media (min-width:921px){
-        .faq-list{grid-template-rows:repeat(5,minmax(0,1fr))}
-        details.faq{display:flex;flex-direction:column;justify-content:center}
-      }
 
       /* Defect 1 — Page 1 must fit exactly one viewport (652px target):
          two compaction tiers for desktop widths; phones keep their own
