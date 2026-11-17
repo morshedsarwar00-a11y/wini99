@@ -1503,6 +1503,55 @@
         background:linear-gradient(180deg,#ffdf7e,var(--gold-2) 60%,var(--gold));
         color:#2a1a00;
       }
+
+      /* ===== FINAL 11 — big premium Next Draw countdown in Page 1's open space =====
+         The three cards stay content-height (FINAL 8), so the bottom row
+         keeps a tall open ivory field under them. That field now holds a
+         big premium countdown panel: Next Draw date + Days / Hours /
+         Minutes / Seconds in large numerals, ticking every second. It is
+         driven by the SAME draw target as the red strip (see tick()), so
+         a Super Admin Next Draw change moves this block too. On desktop
+         the bottom row becomes a column — cards first (natural height),
+         countdown panel centred in the leftover space — so Page 1 still
+         fits exactly one viewport; on phones the panel stacks under the
+         cards, compact, and the hero's flex slack absorbs it. */
+      .big-count{padding:0 20px}
+      .bc-panel{
+        max-width:1180px;margin:0 auto;width:100%;
+        display:flex;align-items:center;gap:clamp(16px,3vw,44px);
+        background:linear-gradient(180deg,#fffdf6,#fdf3e0);
+        border:1.5px solid rgba(212,175,55,.55);border-radius:20px;
+        box-shadow:0 14px 30px rgba(101,78,18,.16);
+        padding:clamp(10px,2vh,22px) clamp(16px,2.6vw,30px);
+      }
+      .bc-head{min-width:0}
+      .bc-label{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:clamp(.62rem,1.5vh,.78rem);font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#b97e04;white-space:nowrap}
+      .bc-dot{width:9px;height:9px;border-radius:50%;background:var(--red-2);box-shadow:0 0 0 4px rgba(228,2,45,.18);flex:none}
+      .bc-date{display:block;font-family:var(--display);font-weight:400;font-size:clamp(1.05rem, min(2.4vw, 3.4vh), 1.7rem);line-height:1.15;color:#1b2436;letter-spacing:.02em;margin-top:3px;white-space:nowrap}
+      .bc-cells{margin-left:auto;display:flex;align-items:flex-start;gap:clamp(6px,1vw,10px);flex:none}
+      .bc-cell{text-align:center}
+      .bc-v{
+        background:#fff;border:1.5px solid rgba(212,175,55,.6);border-radius:14px;
+        font-family:var(--mono);font-weight:700;font-variant-numeric:tabular-nums;color:#1b2436;
+        font-size:clamp(1.7rem, min(4.6vw, 6.6vh), 3.3rem);line-height:1;
+        padding:clamp(6px,1.2vh,10px) clamp(10px,1.4vw,16px);min-width:clamp(58px,7.6vw,92px);
+        box-shadow:0 6px 0 rgba(212,175,55,.35), 0 8px 20px rgba(101,78,18,.12);
+      }
+      .bc-u{font-family:var(--mono);font-size:clamp(.56rem,1.3vh,.7rem);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#b97e04;margin-top:5px}
+      .bc-sep{font-family:var(--mono);font-weight:700;font-size:clamp(1.5rem,5.6vh,2.8rem);line-height:1;color:var(--gold-deep);padding-top:clamp(4px,1vh,8px)}
+      @media (min-width:761px){
+        .bottom-row{flex-direction:column}
+        .bottom-row .wrap{flex:0 1 auto}
+        .big-count{flex:1 1 auto;min-height:0;display:flex;align-items:center;padding-top:clamp(8px,1.6vh,16px)}
+      }
+      @media (max-width:760px){
+        .big-count{padding:0 14px;margin-top:7px}
+        .bc-panel{flex-direction:column;gap:7px;padding:9px 12px;text-align:center;border-radius:16px}
+        .bc-cells{margin-left:0}
+        .bc-date{font-size:1rem;white-space:normal}
+        .bc-v{font-size:1.5rem;min-width:52px;padding:5px 8px;border-radius:11px}
+        .bc-sep{font-size:1.3rem;padding-top:3px}
+      }
     </style>
   </head>
   <body>
@@ -1734,6 +1783,23 @@
             </form>
             <div class="check-result" id="checkResult" role="status" aria-live="polite"></div>
           </section>
+        </div>
+        <div class="big-count">
+          <div class="bc-panel" role="timer" aria-label="Countdown to the next draw">
+            <div class="bc-head">
+              <span class="bc-label"><span class="bc-dot" aria-hidden="true"></span>Next Draw</span>
+              <span class="bc-date" id="bigCdDate">Tuesday, 1 December 2026 · 2:30 PM AST</span>
+            </div>
+            <div class="bc-cells">
+              <div class="bc-cell"><div class="bc-v" id="bigCdD">–</div><div class="bc-u">Days</div></div>
+              <div class="bc-sep" aria-hidden="true">:</div>
+              <div class="bc-cell"><div class="bc-v" id="bigCdH">–</div><div class="bc-u">Hours</div></div>
+              <div class="bc-sep" aria-hidden="true">:</div>
+              <div class="bc-cell"><div class="bc-v" id="bigCdM">–</div><div class="bc-u">Minutes</div></div>
+              <div class="bc-sep" aria-hidden="true">:</div>
+              <div class="bc-cell"><div class="bc-v" id="bigCdS">–</div><div class="bc-u">Seconds</div></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2612,6 +2678,11 @@
         var miniDate = document.getElementById("miniDrawDate");
         var waitTime = document.querySelector("#tsWait .tw-time");
         var waitSub = document.querySelector("#tsWait .tw-sub");
+        var bigD = document.getElementById("bigCdD");
+        var bigH = document.getElementById("bigCdH");
+        var bigM = document.getElementById("bigCdM");
+        var bigS = document.getElementById("bigCdS");
+        var bigDate = document.getElementById("bigCdDate");
         var dateFmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Qatar", weekday: "long", day: "numeric", month: "long", year: "numeric" });
         var shortFmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Qatar", day: "numeric", month: "long", year: "numeric" });
         var timeFmt = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Qatar", hour: "numeric", minute: "2-digit", hour12: true });
@@ -2713,6 +2784,15 @@
           var timeStr = timeFmt.format(target).toUpperCase() + " AST";
           titleEl.textContent = dateFmt.format(target) + " · " + timeStr;
           miniDate.textContent = shortFmt.format(target);
+          /* big premium countdown block in Page 1's open space — the SAME
+             target as the strip, so a Super Admin Next Draw change moves
+             this block too; unlike the strip it ticks every second in
+             every state, always showing Days / Hours / Minutes / Seconds */
+          bigD.textContent = pad(Math.floor(diff / 86400000));
+          bigH.textContent = pad(Math.floor(diff % 86400000 / 3600000));
+          bigM.textContent = pad(Math.floor(diff % 3600000 / 60000));
+          bigS.textContent = pad(Math.floor(diff % 60000 / 1000));
+          bigDate.textContent = dateFmt.format(target) + " · " + timeStr;
           if (diff > leadMs()){
             /* waiting: static date/time only — no running countdown anywhere */
             strip.classList.add("is-waiting"); strip.classList.remove("is-live");
