@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="light" />
     <meta name="description" content="wini99 results — latest winning numbers (sample / demo until official Qatar draw data is available), ticket checker, prize table, past draws, and our own wini99 app — open it free." />
     <link rel="icon" href="data:," />
     <title>wini99 — Results, Ticket Checker &amp; App</title>
@@ -1192,6 +1192,141 @@
         .checker select,.checker input{min-height:30px}
         .checker .btn{min-height:32px}
       }
+
+      /* ===== FINAL 5 — light premium palette (ivory + gold) + audit fixes =====
+         Palette: the shared surface/text variables flip to light, so every
+         panel that uses them (Results, Previous Draw, jackpot band, prize
+         table, past-draw cards, FAQ, all-numbers box) becomes white / soft
+         cream with a rich-gold hairline and a soft warm shadow, and its text
+         becomes navy-charcoal. Accents with their own explicit colours stay
+         exactly as they were: the gold logo ball, red balls, red ticket
+         strip, red/gold buttons, the green app CTA, the skyline header, the
+         dark-red checker panel, the deep app band, the modals. */
+      :root{
+        color-scheme:light;
+        --card:#fffdf6;
+        --tx:#1b2436;
+        --tx-2:#4a5568;
+        --tx-3:#7a8699;
+        --gold-line:rgba(212,175,55,.45);
+        --shadow:0 14px 30px rgba(101,78,18,.16);
+        --shadow-sm:0 8px 20px rgba(101,78,18,.12);
+      }
+      body{background:linear-gradient(180deg,#fdf8ec 0%,#fff6e3 100%)}
+      .page1{
+        color:#1b2436;
+        background:
+          radial-gradient(900px 480px at 78% 8%, rgba(228,2,45,.10), rgba(228,2,45,0) 62%),
+          radial-gradient(700px 500px at 8% 90%, rgba(212,175,55,.18), rgba(212,175,55,0) 60%),
+          radial-gradient(1200px 800px at 50% 120%, rgba(246,180,30,.16), rgba(246,180,30,0) 55%),
+          linear-gradient(180deg,#fdf8ec 0%,#fff6e3 100%);
+      }
+      .page2{background:linear-gradient(180deg,#fdf8ec 0%,#fff6e3 100%);color:var(--tx)}
+      /* hero copy sits straight on the ivory page — dark text, deep gold date */
+      .hero h1{color:#1b2436}
+      .hero h1 .date{color:#c78a06}
+      .hero h1 .red{color:var(--red)}
+      .hero .lede{color:#4a5568}
+      .hero .lede b{color:#1b2436}
+      .kicker{color:#c78a06}
+      .jackpot-copy .kicker{color:var(--red)}
+      .jackpot-copy h2 .red{color:var(--red)}
+      /* white outline hero buttons would vanish on ivory — deep outline instead */
+      .hero-actions .btn-outline-w{border-color:rgba(27,36,54,.55);color:#1b2436;background:rgba(255,255,255,.55)}
+      .hero-actions .btn-outline-w:hover{background:#ffffff}
+      /* contrast lifts where light pink/red sat on the old dark cards */
+      .rp-prize .amt{color:var(--red)}
+      .num-chip{background:#fbf1d7}
+      .winner-list li b{color:var(--red)}
+      table.prizes td.amt{color:var(--red)}
+      .draw-card .d-val{color:var(--red)}
+      .draw-card .mini-link{color:var(--red)}
+      details.allnums h3 .amt{color:var(--red)}
+      #copyMsg{color:var(--red-deep)}
+      .jackpot-art .jp-word{color:var(--red);text-shadow:0 2px 0 rgba(212,175,55,.35)}
+      .page2 footer.site a:hover{color:#c78a06}
+      .sa-link:hover{color:var(--red)}
+
+      /* Defect 4 — air around the winner-ball pills in the app band */
+      .app-tag b{margin-left:9px}
+      .app-tag b + b{margin-left:5px}
+
+      /* Defect 2 — full draw date visible in the checker select: smaller
+         select text, tighter select padding, a wider date column and a
+         slightly wider checker panel, so "01 November 2026" plus the
+         native dropdown arrow fit the closed select on desktop and phone */
+      .checker select{font-size:.82rem;padding:0 4px}
+      .checker .btn{padding:0 13px}
+      @media (min-width:761px){
+        .checker form{grid-template-columns:minmax(0,1.65fr) minmax(0,1fr) auto}
+        .bottom-row .wrap{grid-template-columns:minmax(0,1.4fr) minmax(0,.77fr) minmax(0,1.13fr)}
+      }
+      @media (min-width:761px) and (max-width:1080px){
+        .checker form{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
+      }
+
+      /* Defect 3 — Page 2: the grid already stretches to the viewport; let
+         the columns fill it (cards and table grow, FAQ rows spread) instead
+         of leaving one big navy void above the disclosure and footer */
+      .draws-stack{flex:1 1 auto;grid-template-rows:repeat(3,minmax(0,1fr))}
+      .draw-card{display:flex;flex-direction:column}
+      .draw-card .d-meta{margin-top:auto}
+      .faq-list{flex:1 1 auto}
+      table.prizes{flex:1 1 auto}
+      @media (min-width:921px){
+        .faq-list{grid-template-rows:repeat(5,minmax(0,1fr))}
+        details.faq{display:flex;flex-direction:column;justify-content:center}
+      }
+
+      /* Defect 1 — Page 1 must fit exactly one viewport (652px target):
+         two compaction tiers for desktop widths; phones keep their own
+         tuned layout below 761px. Content, text and colours unchanged —
+         only spacing and sizing shrink, and the hero (flex:1) absorbs
+         whatever room is left. */
+      @media (min-width:761px) and (max-height:1000px){
+        .brand .logo-ball{width:clamp(78px,12.5vh,124px);height:clamp(78px,12.5vh,124px)}
+        .page1 .phone-link svg{height:clamp(100px,15vh,140px)}
+        .page1 .app-cta .btn-buy{min-height:50px}
+        .results-panel,.prev-panel{padding-top:7px;padding-bottom:7px}
+        .checker{padding-top:10px;padding-bottom:10px}
+        .ticket-strip{padding-top:7px;padding-bottom:7px}
+      }
+      @media (min-width:761px) and (max-height:760px){
+        .topstrip .wrap{min-height:24px}
+        .brand .logo-ball{width:clamp(60px,11.5vh,96px);height:clamp(60px,11.5vh,96px)}
+        .brand .logo-name{font-size:clamp(1.05rem,2.9vh,1.85rem)}
+        header.site .wrap{padding-top:4px;padding-bottom:4px}
+        .app1-shell{padding-top:4px}
+        .page1 .app-sec{padding:5px 22px}
+        .page1 .phone-link svg{height:clamp(78px,12.5vh,110px)}
+        .page1 .phone-cap{font-size:.64rem}
+        .page1 .app-head h2{font-size:clamp(1.25rem,4vh,1.8rem)}
+        .page1 .app-cta{gap:5px}
+        .page1 .app-cta .btn{min-height:34px}
+        .page1 .app-cta .btn-buy{min-height:40px;font-size:1rem}
+        .app-note{font-size:.66rem;line-height:1.3}
+        .hero h1{font-size:clamp(1.2rem, min(2.2vw,3vh),1.8rem)}
+        .hero-actions .btn{min-height:32px}
+        .strip{margin:3px 0}
+        .ticket-strip{padding:4px 24px}
+        .ts-wait{padding:4px 14px}
+        .bottom-row{padding-bottom:6px}
+        .results-panel,.prev-panel{padding-top:6px;padding-bottom:6px;gap:5px}
+        .checker{padding:7px 14px}
+        .checker h2{font-size:clamp(1rem,2.9vh,1.3rem);margin-bottom:0}
+        .checker select,.checker input{min-height:36px}
+        .rp-head h2{font-size:clamp(.9rem,2.6vh,1.15rem)}
+        .rp-balls .rball{width:27px;height:27px;font-size:.95rem}
+        .rp-balls.sm .rball{width:24px;height:24px;font-size:.85rem}
+        .rp-chips{font-size:.68rem;gap:4px 8px}
+        .rp-chips .num-chip{font-size:.74rem;padding:0 6px}
+        .rp-actions .btn{min-height:28px;font-size:.8rem}
+        .winner-list li{padding-top:2px;font-size:.74rem}
+        .prev-view-btn{min-height:29px;margin-top:4px;font-size:.78rem}
+        .check-result{margin-top:7px;padding:7px 10px;font-size:.8rem;line-height:1.35}
+        .check-result ul{margin-top:3px}
+        .check-result p{font-size:.76rem;margin-top:3px}
+      }
     </style>
   </head>
   <body>
@@ -1471,7 +1606,7 @@
               <div>
                 <label for="drawSelect">Draw date</label>
                 <select id="drawSelect">
-                  <option value="2026-11-01" selected>01 November 2026 (latest)</option>
+                  <option value="2026-11-01" selected>01 November 2026</option>
                   <option value="2026-10-16">16 October 2026</option>
                   <option value="2026-10-01">01 October 2026</option>
                 </select>
