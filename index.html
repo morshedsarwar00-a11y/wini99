@@ -1386,6 +1386,89 @@
       @media (min-width:761px) and (max-height:760px){
         .hero{padding-top:4px}
       }
+
+      /* ===== FINAL 9 — no dark backgrounds left: strip, header, checker,
+         app band and footer join the light ivory + gold theme =====
+         The five areas FINAL 5 kept dark are now lightened to match the
+         rest of the page. Only backgrounds and the text colours that sat
+         on them change — every accent keeps its colour: the gold header
+         button, the red countdown band, the green app CTA, the red
+         balls, the gold in the logos. Content, links and layout are
+         untouched, so both pages keep their one-viewport fit. */
+
+      /* (1) Next draw strip — warm ivory bar, ink text, red dot stays */
+      .topstrip{background:linear-gradient(180deg,#fbf1d7,#f6ead0);color:#4a4234;border-bottom:1px solid var(--gold-line)}
+      #miniCountdown{color:#1b2436}
+      .topstrip .next b{color:#1b2436 !important}
+
+      /* (2) Header — the Qatar skyline photo stays and shows CLEARLY:
+         full-strength photo with a brightness lift and only a whisper
+         of light veil (no dark dimming, no solid light wash), so the
+         picture reads as a bright daytime skyline, never black. The
+         nav keeps its white text + shadow so it stays readable over
+         the photo, and the brand sub sits on a light translucent chip. */
+      header.site{background:#cdbfa4;border-bottom:1px solid var(--gold-line)}
+      header.site::before{opacity:1;filter:brightness(1.22) saturate(1.06)}
+      header.site::after{
+        background:
+          linear-gradient(90deg, rgba(253,248,236,.34) 0%, rgba(253,248,236,.10) 42%, rgba(253,248,236,0) 72%, rgba(253,248,236,.14) 100%),
+          linear-gradient(180deg, rgba(253,248,236,.16), rgba(253,248,236,.05));
+      }
+      .brand .sub{color:#3d3428;background:rgba(255,252,244,.78);text-shadow:none}
+      nav.main a{color:#fff;text-shadow:0 1px 5px rgba(20,16,8,.85), 0 0 2px rgba(20,16,8,.85)}
+      nav.main a:hover{background:rgba(255,255,255,.20);color:#fff}
+
+      /* (3) Check Your Ticket — soft blush-cream panel, deep-red ink */
+      .checker{
+        background:linear-gradient(160deg,#fff8ee,#fdeef1 78%);
+        border:1px solid rgba(212,175,55,.55);
+        color:#1b2436;
+      }
+      .checker h2{color:var(--red-deep)}
+      .checker p{color:#5f4a50}
+      .checker p b{color:var(--red-deep) !important}
+      .checker label{color:#a3122a}
+      .checker select,.checker input{border-color:#e8d5ae}
+      .check-result.lose{background:#f3e9e2;color:#4a3a3a}
+
+      /* (4) wini99 app band (Page 2) — ivory-gold panel, dark ink text;
+         the red winner-ball pills, gold wordmark gradient, red Free
+         Download button and the big green CTA keep their colours */
+      .app-sec{
+        color:#1b2436;
+        background:
+          radial-gradient(460px 220px at 88% -10%, rgba(228,2,45,.10), rgba(228,2,45,0) 62%),
+          radial-gradient(300px 200px at 4% 110%, rgba(246,180,30,.22), rgba(246,180,30,0) 60%),
+          linear-gradient(120deg,#fffaf0 0%,#fdf3e0 55%,#fdeef1 100%);
+        border:1.5px solid rgba(212,175,55,.65);
+        box-shadow:0 14px 30px rgba(101,78,18,.16);
+      }
+      .app-head h2{color:#1b2436;text-shadow:0 2px 0 rgba(212,175,55,.35), 0 4px 10px rgba(101,78,18,.18)}
+      .app-head h2 em{
+        background:linear-gradient(180deg,#ffdf7e 0%, var(--gold-2) 38%, var(--gold) 68%, var(--gold-deep) 105%);
+        -webkit-background-clip:text;background-clip:text;
+        filter:drop-shadow(0 2px 3px rgba(90,40,0,.35)) drop-shadow(0 0 10px rgba(246,180,30,.45));
+      }
+      .app-tag{color:#4a4234}
+      .feat{background:rgba(255,255,255,.68);border:1px solid rgba(212,175,55,.5)}
+      .feat b{color:#1b2436}
+      .feat span{color:#5f5348}
+      .feat strong{color:#b97e04}
+      .app-note{color:#7a6a4a}
+      .phone-cap{color:#b97e04}
+      .phone-link svg{filter:drop-shadow(0 10px 18px rgba(101,78,18,.28))}
+
+      /* (5) Footer — same cream page, text darkened to read clearly */
+      .page2 footer.site{color:#5f6a7a}
+      .page2 footer.site .f-brand{color:#1b2436}
+      .page2 footer.site a{color:#3d4a5e}
+      .page2 footer.site a:hover{color:#b97e04}
+      .page2 footer.site .fine{color:#66707f}
+      .sa-link{color:#5f6a7a}
+
+      /* table header bars join the theme too — warm gold instead of black */
+      table.prizes th{background:#f3e3bb;color:#6b4e12}
+      table.wm-table th{background:#f3e3bb;color:#6b4e12}
     </style>
   </head>
   <body>
