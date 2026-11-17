@@ -1363,6 +1363,26 @@
         .bottom-row{flex:1 1 auto;display:flex}
         .bottom-row .wrap{flex:1 1 auto;min-height:0}
       }
+
+      /* ===== FINAL 8 — Page 1 cards hug their content, slack goes to the page =====
+         FINAL 7 pushed the freed hero space INTO the bottom row, so the
+         three cards stretched to one tall equal height and their
+         margin-top:auto rows (Results buttons, Previous Draw winner
+         list) pinned content to the bottom — ~460px of empty panel
+         inside Results / Previous Draw and ~490px of empty dark panel
+         under the Checker's Check button. The cards are now
+         content-height (align-items:start stops the grid stretch, so
+         the auto margins have nothing to spread and sit inert). The
+         freed space stays at page level instead: a pad above the row
+         under the countdown strip, and the rest falls below the cards
+         as open page background, so the row is no longer pressed
+         against the fold and Page 1 still fits exactly one viewport.
+         Desktop widths only — phones keep their tuned layout. Nothing
+         else changes. */
+      @media (min-width:761px){
+        .bottom-row{padding-top:clamp(10px,2.2vh,22px)}
+        .bottom-row .wrap{align-items:start}
+      }
       @media (min-width:761px) and (max-height:760px){
         .hero{padding-top:4px}
       }
