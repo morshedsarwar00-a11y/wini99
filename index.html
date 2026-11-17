@@ -1552,6 +1552,18 @@
         .bc-v{font-size:1.5rem;min-width:52px;padding:5px 8px;border-radius:11px}
         .bc-sep{font-size:1.3rem;padding-top:3px}
       }
+
+      /* ===== FINAL 12 — Page 2 grows past one viewport so nothing clips =====
+         The two-viewport system (.page is exactly 100dvh with
+         overflow:hidden) broke Page 2 on short screens: the prize table
+         (9 rows) was squeezed to its header + a sliver of the 1st-prize
+         row (user screenshot, 2026-11-17: "dekha jai na"), because
+         .p2-grid only gets the leftover height and table.prizes
+         (flex:1 1 auto) shrinks inside an overflow:hidden column.
+         Page 1 keeps its exact one-viewport fit (the cover rule);
+         Page 2 now grows as tall as its content needs, so the full
+         prize table, past draws and FAQ are all reachable by scrolling. */
+      .page2{height:auto;min-height:100vh;min-height:100dvh;overflow:visible}
     </style>
   </head>
   <body>
@@ -1568,7 +1580,7 @@
         <div class="wrap">
           <a class="brand" href="#top" aria-label="wini99 — home">
             <span class="logo-ball"><span class="logo-name">wini<em>99</em></span></span>
-            <span><span class="sub">Lottery Results<br />· wini99</span></span>
+            <!-- FINAL 12: the "Lottery Results · wini99" sub line is gone (user, 2026-11-17: "eta thakbena") — the logo-ball alone is the brand. -->
           </a>
           <nav class="main" aria-label="Main">
             <a href="#top">Home</a>
