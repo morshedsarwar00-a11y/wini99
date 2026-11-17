@@ -1469,6 +1469,40 @@
       /* table header bars join the theme too — warm gold instead of black */
       table.prizes th{background:#f3e3bb;color:#6b4e12}
       table.wm-table th{background:#f3e3bb;color:#6b4e12}
+
+      /* ===== FINAL 10 — last two dark spots join the light theme =====
+         (a) The full-width "Play Now — As Easy As 1,2,3" band between the
+         Jackpot card and the prize table was still dark crimson/maroon
+         with white text — now warm ivory/cream with a gold hairline,
+         deep-red title and ink step text; the numbered circles become
+         gold with dark numerals so they stay crisp on the light band.
+         (b) The "Results" pill inside the Jackpot card was dark navy —
+         now ivory/gold with dark text (hover deepens to full gold).
+         Scoped to .jackpot-band only, so every other .btn-dark on the
+         page is untouched. Content, links and layout unchanged. */
+      .easy-strip{
+        background:linear-gradient(90deg,#fdf3e0,#fffaf0 45%,#fbf1d7);
+        border:1px solid rgba(212,175,55,.6);
+        color:#1b2436;
+        box-shadow:0 10px 24px rgba(101,78,18,.14);
+      }
+      .easy-strip .es-title{color:var(--red-deep)}
+      .easy-strip .es-step{color:#1b2436}
+      .easy-strip .es-step i{
+        background:linear-gradient(180deg,var(--gold-2),var(--gold) 60%,var(--gold-deep));
+        color:#2a1a00;
+        box-shadow:0 2px 6px rgba(101,78,18,.25);
+      }
+      .jackpot-band .btn-dark{
+        background:linear-gradient(180deg,#fffaf0,#fbf1d7);
+        color:#1b2436;
+        border-color:rgba(212,175,55,.65);
+        box-shadow:0 6px 16px rgba(101,78,18,.14);
+      }
+      .jackpot-band .btn-dark:hover{
+        background:linear-gradient(180deg,#ffdf7e,var(--gold-2) 60%,var(--gold));
+        color:#2a1a00;
+      }
     </style>
   </head>
   <body>
