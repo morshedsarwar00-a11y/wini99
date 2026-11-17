@@ -1507,7 +1507,7 @@
       /* ===== FINAL 11 — big premium Next Draw countdown in Page 1's open space =====
          The three cards stay content-height (FINAL 8), so the bottom row
          keeps a tall open ivory field under them. That field now holds a
-         big premium countdown panel: Next Draw date + Days / Hours /
+         big premium countdown panel: Next Draw date + total Hours /
          Minutes / Seconds in large numerals, ticking every second. It is
          driven by the SAME draw target as the red strip (see tick()), so
          a Super Admin Next Draw change moves this block too. On desktop
@@ -1552,18 +1552,6 @@
         .bc-v{font-size:1.5rem;min-width:52px;padding:5px 8px;border-radius:11px}
         .bc-sep{font-size:1.3rem;padding-top:3px}
       }
-
-      /* ===== FINAL 12 — Page 2 grows past one viewport so nothing clips =====
-         The two-viewport system (.page is exactly 100dvh with
-         overflow:hidden) broke Page 2 on short screens: the prize table
-         (9 rows) was squeezed to its header + a sliver of the 1st-prize
-         row (user screenshot, 2026-11-17: "dekha jai na"), because
-         .p2-grid only gets the leftover height and table.prizes
-         (flex:1 1 auto) shrinks inside an overflow:hidden column.
-         Page 1 keeps its exact one-viewport fit (the cover rule);
-         Page 2 now grows as tall as its content needs, so the full
-         prize table, past draws and FAQ are all reachable by scrolling. */
-      .page2{height:auto;min-height:100vh;min-height:100dvh;overflow:visible}
     </style>
   </head>
   <body>
@@ -1580,7 +1568,7 @@
         <div class="wrap">
           <a class="brand" href="#top" aria-label="wini99 — home">
             <span class="logo-ball"><span class="logo-name">wini<em>99</em></span></span>
-            <!-- FINAL 12: the "Lottery Results · wini99" sub line is gone (user, 2026-11-17: "eta thakbena") — the logo-ball alone is the brand. -->
+            <span><span class="sub">Lottery Results<br />· wini99</span></span>
           </a>
           <nav class="main" aria-label="Main">
             <a href="#top">Home</a>
@@ -1803,8 +1791,6 @@
               <span class="bc-date" id="bigCdDate">Tuesday, 1 December 2026 · 2:30 PM AST</span>
             </div>
             <div class="bc-cells">
-              <div class="bc-cell"><div class="bc-v" id="bigCdD">–</div><div class="bc-u">Days</div></div>
-              <div class="bc-sep" aria-hidden="true">:</div>
               <div class="bc-cell"><div class="bc-v" id="bigCdH">–</div><div class="bc-u">Hours</div></div>
               <div class="bc-sep" aria-hidden="true">:</div>
               <div class="bc-cell"><div class="bc-v" id="bigCdM">–</div><div class="bc-u">Minutes</div></div>
@@ -2690,7 +2676,6 @@
         var miniDate = document.getElementById("miniDrawDate");
         var waitTime = document.querySelector("#tsWait .tw-time");
         var waitSub = document.querySelector("#tsWait .tw-sub");
-        var bigD = document.getElementById("bigCdD");
         var bigH = document.getElementById("bigCdH");
         var bigM = document.getElementById("bigCdM");
         var bigS = document.getElementById("bigCdS");
@@ -2799,9 +2784,9 @@
           /* big premium countdown block in Page 1's open space — the SAME
              target as the strip, so a Super Admin Next Draw change moves
              this block too; unlike the strip it ticks every second in
-             every state, always showing Days / Hours / Minutes / Seconds */
-          bigD.textContent = pad(Math.floor(diff / 86400000));
-          bigH.textContent = pad(Math.floor(diff % 86400000 / 3600000));
+             every state, always showing total Hours / Minutes / Seconds —
+             Hours is the whole time to the draw in hours (days × 24 + hours) */
+          bigH.textContent = pad(Math.floor(diff / 3600000));
           bigM.textContent = pad(Math.floor(diff % 3600000 / 60000));
           bigS.textContent = pad(Math.floor(diff % 60000 / 1000));
           bigDate.textContent = dateFmt.format(target) + " · " + timeStr;
