@@ -159,6 +159,14 @@
       @media (max-width:1020px){ nav.main a:not(.keep){display:none} }
       @media (max-width:560px){ .brand .sub{font-size:.5rem;letter-spacing:.16em} .btn-app{padding:0 13px;font-size:.85rem} .cta-extra{display:none} }
 
+      /* ---------- jackpot promo banner (2026-11-18) ---------- */
+      /* User-supplied poster, below the header logo; links to the
+         wini99 number-game app. Full image, rounded, subtle shadow. */
+      .jackpot-banner{padding:18px 0 6px}
+      .jackpot-banner a{display:block;border-radius:18px;overflow:hidden;box-shadow:0 14px 34px rgba(0,0,0,.45)}
+      .jackpot-banner img{display:block;width:100%;height:auto}
+      @media (max-width:560px){ .jackpot-banner{padding:12px 0 4px} .jackpot-banner a{border-radius:12px} }
+
       /* ---------- hero ---------- */
       .hero{
         flex:1 1 auto;min-height:0;
@@ -1669,6 +1677,14 @@
         </div>
       </header>
 
+      <!-- Jackpot promo banner (2026-11-18, user-supplied artwork) — below the logo. -->
+      <div class="jackpot-banner">
+        <div class="wrap">
+          <a href="https://www.wini99.com/app/" aria-label="Play the wini99 number game — pick 0-9 for 9x, 000-999 for 900x">
+            <img src="jackpot-banner.jpg" alt="The Multiplier Jackpot — choose 1 to 10 for 9x or 000 to 999 for 900x. Jackpot winner, 900x multiplier.">
+          </a>
+        </div>
+      </div>
 
       <div class="hero">
         <div class="wrap">
