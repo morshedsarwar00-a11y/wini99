@@ -1897,7 +1897,7 @@
               <span class="bc-label"><span class="bc-dot" aria-hidden="true"></span>Next Draw</span>
               <span class="bc-date" id="bigCdDate">Tuesday, 1 December 2026 · 2:30 PM AST</span>
             </div>
-            <div class="bc-cells">
+            <div class="bc-cells" id="bigCdCells">
               <div class="bc-cell"><div class="bc-v" id="bigCdH">–</div><div class="bc-u">Hours</div></div>
               <div class="bc-sep" aria-hidden="true">:</div>
               <div class="bc-cell"><div class="bc-v" id="bigCdM">–</div><div class="bc-u">Minutes</div></div>
@@ -2786,6 +2786,7 @@
         var bigH = document.getElementById("bigCdH");
         var bigM = document.getElementById("bigCdM");
         var bigS = document.getElementById("bigCdS");
+        var bigCells = document.getElementById("bigCdCells");
         var bigDate = document.getElementById("bigCdDate");
         var dateFmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Qatar", weekday: "long", day: "numeric", month: "long", year: "numeric" });
         var shortFmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Qatar", day: "numeric", month: "long", year: "numeric" });
@@ -2890,13 +2891,21 @@
           miniDate.textContent = shortFmt.format(target);
           /* big premium countdown block in Page 1's open space — the SAME
              target as the strip, so a Super Admin Next Draw change moves
-             this block too; unlike the strip it ticks every second in
-             every state, always showing total Hours / Minutes / Seconds —
-             Hours is the whole time to the draw in hours (days × 24 + hours) */
-          bigH.textContent = pad(Math.floor(diff / 3600000));
-          bigM.textContent = pad(Math.floor(diff % 3600000 / 60000));
-          bigS.textContent = pad(Math.floor(diff % 60000 / 1000));
+             this block too. It runs ONLY in the last 24 hours before the
+             draw (never more than 24:00:00); outside that window only the
+             Next Draw date/time shows and the H/M/S tiles stay hidden.
+             (The .bc-cells rule sets display:flex, which beats the hidden
+             attribute, so the tiles are hidden via style.display.) */
           bigDate.textContent = dateFmt.format(target) + " · " + timeStr;
+          if (diff > 24 * 3600 * 1000){
+            /* more than 24h to go: date only, no countdown tiles */
+            if (bigCells) bigCells.style.display = "none";
+          } else {
+            if (bigCells) bigCells.style.display = "";
+            bigH.textContent = pad(Math.floor(diff / 3600000));
+            bigM.textContent = pad(Math.floor(diff % 3600000 / 60000));
+            bigS.textContent = pad(Math.floor(diff % 60000 / 1000));
+          }
           if (diff > leadMs()){
             /* waiting: static date/time only — no running countdown anywhere */
             strip.classList.add("is-waiting"); strip.classList.remove("is-live");
