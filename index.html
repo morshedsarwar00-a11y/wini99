@@ -9,7 +9,7 @@
     <title>wini99 — Results, Ticket Checker &amp; App</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
     <style>
       :root{
         color-scheme: dark;
@@ -1902,6 +1902,153 @@
       .draw-card .mini-link{color:#e4022d}
       details.faq summary::after{color:#e4022d}
       details.allnums summary::after{color:#e4022d}
+    
+      /* ================= CLASSICAL + PREMIUM (2026-11-27) =================
+         Deep navy + gold, elegant serif display type, gold hairlines,
+         soft shadows, gentle motion. UAE-Lottery structure, wini99 content. */
+      :root{--serif:"Playfair Display",Georgia,"Times New Roman",serif}
+      /* serif display type for big headings + prize figures */
+      .hero h1,.p2-col h2,.results-panel h2,.prev-panel h2,.checker h2,.jackpot-copy h2,.app-head h2,footer.site .f-brand,.tb-jackpot-amt,.dl-amt,.hf-mult,.hc-num,.hc-title,.sc-name{font-family:var(--serif);letter-spacing:.01em}
+      /* gold hairline under section headings */
+      .p2-col h2,.cp-sec h2{position:relative;padding-bottom:10px}
+      .p2-col h2::after,.cp-sec h2::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:3px;border-radius:2px;background:linear-gradient(90deg,#ffd34d,#c78a06)}
+      /* jackpot numerals: big gold serif with a slow shine */
+      .hero-jackpot .hj-amt,.tb-jackpot-amt{
+        background:linear-gradient(100deg,#8a5200 0%,#ffd34d 25%,#fff3c4 50%,#ffd34d 75%,#8a5200 100%);
+        background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+        filter:drop-shadow(0 2px 6px rgba(120,66,0,.35));
+        animation:cpShine 7s linear infinite;
+      }
+      @keyframes cpShine{to{background-position:200% 0}}
+      @keyframes cpFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+      @keyframes cpFloaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+      .rball{transition:transform .25s ease,box-shadow .25s ease}
+      .rball:hover{transform:translateY(-3px)}
+      @media (prefers-reduced-motion: reduce){
+        .hero-slide.active{animation:none}
+        .hero-jackpot .hj-amt,.tb-jackpot-amt{animation:none}
+        .sc-art .sc-ball{animation:none}
+      }
+
+      /* ---------- hero carousel ---------- */
+      .hero-carousel{position:relative;z-index:1}
+      .hero-slide{display:none}
+      .hero-slide.active{display:block;animation:cpFade .7s ease}
+      .hero-slide.hc-alt .wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(8px,1.6vh,14px);padding:clamp(18px,3.6vh,32px) 20px}
+      .hc-num{font-weight:900;font-size:clamp(2.6rem,min(9vw,4.6rem));line-height:1;color:#fff;text-shadow:0 3px 0 rgba(120,40,0,.25),0 10px 30px rgba(120,40,0,.35);letter-spacing:.04em}
+      .hc-balls{justify-content:center}
+      .hc-prize{font-weight:800;font-size:clamp(1.1rem,2.6vw,1.5rem);color:#5c0012}
+      .hc-title{font-weight:900;font-size:clamp(1.5rem,min(4.6vw,2.6rem));line-height:1.15;color:#fff;text-shadow:0 2px 10px rgba(120,40,0,.35);margin:0}
+      .hc-title b{color:#ffe9a8}
+      .hc-sub{color:#fff3d6;font-size:clamp(.9rem,2vw,1.05rem);margin:0}
+      .hc-prev,.hc-next{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:42px;height:42px;min-height:42px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);background:rgba(11,18,32,.35);color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+      .hc-prev{left:10px}
+      .hc-next{right:10px}
+      .hc-prev:hover,.hc-next:hover{background:rgba(11,18,32,.65)}
+      .hc-dots{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);z-index:3;display:flex;gap:7px}
+      .hc-dot{width:9px;height:9px;border-radius:999px;border:none;background:rgba(255,255,255,.55);cursor:pointer;padding:0;min-height:0}
+      .hc-dot.active{width:26px;background:#fff}
+      @media (max-width:760px){.hc-prev,.hc-next{display:none}}
+
+      /* ---------- ticket builder ---------- */
+      .ticket-builder{margin:clamp(10px,2vh,18px) 0 clamp(8px,1.8vh,16px)}
+      .tb-eyebrow{display:block;text-align:center;font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#ffd34d;margin-bottom:10px}
+      .tb-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(12px,1.8vw,20px);align-items:stretch}
+      @media (max-width:760px){.tb-grid{grid-template-columns:1fr}}
+      .tb-left{background:linear-gradient(150deg,#16233c 0%,#0e1a2e 60%,#0b1220 100%);border:1.5px solid rgba(212,175,55,.65);border-radius:18px;box-shadow:0 16px 34px rgba(10,15,30,.45);color:#f2efe6;padding:clamp(14px,2.6vh,22px) clamp(16px,2.2vw,26px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:9px;justify-content:center}
+      .tb-kicker{font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#ffd34d}
+      .tb-date{font-size:.92rem;color:#c7cee0}
+      .tb-date b{color:#fff}
+      .tb-jackpot-label{display:block;font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#ffd34d}
+      .tb-jackpot-amt{display:block;font-weight:900;font-size:clamp(2rem,min(5vw,3.2rem));line-height:1.05}
+      .tb-pill{display:inline-block;border:1.5px solid rgba(212,175,55,.6);border-radius:999px;padding:3px 12px;font-size:.75rem;font-weight:700;color:#ffd34d}
+      .tb-entry{font-size:.9rem;color:#c7cee0}
+      .tb-entry b{color:#fff}
+      .mirror-cd{display:flex;align-items:center;gap:6px}
+      .mc-cell{background:rgba(255,255,255,.07);border:1px solid rgba(212,175,55,.45);border-radius:10px;padding:6px 10px;min-width:58px;text-align:center}
+      .mc-v{font-family:var(--display);font-size:1.35rem;line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+      .mc-u{font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9aa5bc}
+      .mc-sep{font-family:var(--display);font-size:1.3rem;color:#ffd34d}
+      .tb-right{display:flex;min-width:0}
+      .tb-right .checker{flex:1}
+      .tb-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:2px 0 8px}
+      .btn-outline-gold{border:1.5px solid rgba(212,175,55,.7);background:#fff;color:#8a5200;border-radius:999px;padding:0 14px;min-height:40px;font-weight:700;cursor:pointer}
+      .btn-outline-gold:hover{background:#fff8e1}
+      .tb-qty{display:flex;align-items:center;gap:6px}
+      .tb-qty button{width:34px;height:34px;min-height:34px;border-radius:50%;border:1.5px solid rgba(212,175,55,.7);background:#fff;color:#8a5200;font-size:1.1rem;font-weight:800;cursor:pointer;line-height:1;padding:0}
+      .tb-qty button:hover{background:#fff8e1}
+      #tbQty{font-family:var(--display);font-size:1.1rem;min-width:22px;text-align:center;color:#1b2436}
+      .tb-qty-lbl{font-size:.82rem;color:#454b58}
+      /* bottom row is now two panels (checker moved into the ticket builder) */
+      @media (min-width:761px){.bottom-row .wrap{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}}
+
+      /* ---------- scratch cards ---------- */
+      .cp-sec{margin:clamp(14px,2.6vh,22px) 0}
+      .sc-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:10px}
+      .sc-head h2{margin:0}
+      .sc-nav{display:flex;gap:6px}
+      .sc-arrow{width:38px;height:38px;min-height:38px;border-radius:50%;border:1.5px solid var(--gold-line);background:#fff;color:#8a5200;font-size:1.25rem;cursor:pointer;display:grid;place-items:center;padding:0;line-height:1}
+      .sc-arrow:hover{background:linear-gradient(180deg,#ffd34d,#f6b41e);color:#2a1a00}
+      .scratch-row{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 10px;scrollbar-width:none}
+      .scratch-row::-webkit-scrollbar{display:none}
+      .sc-tile{flex:0 0 min(220px,72vw);scroll-snap-align:start;border-radius:16px;overflow:hidden;text-decoration:none;color:#fff;box-shadow:0 12px 26px rgba(10,15,30,.35);transition:transform .25s ease,box-shadow .25s ease}
+      .sc-tile:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(10,15,30,.45)}
+      .sc-art{height:120px;display:grid;place-items:center;position:relative;overflow:hidden}
+      .sc-art .sc-ball{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:1.7rem;color:#7a4d00;background:radial-gradient(circle at 32% 28%,#fff3c4,#ffd34d 42%,#f6b41e 62%,#c78a06);box-shadow:inset 0 -5px 9px rgba(120,66,0,.35),0 5px 12px rgba(0,0,0,.35);animation:cpFloaty 5s ease-in-out infinite}
+      .sc-art::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 15%,rgba(255,255,255,.35),transparent 45%)}
+      .sc-body{display:block;padding:10px 12px 12px;background:#fff;color:#1b2436}
+      .sc-name{display:block;font-weight:800;font-size:1.05rem;color:#0b1220}
+      .sc-price{float:right;font-family:var(--mono);font-size:.72rem;font-weight:700;background:#0b1220;color:#ffd34d;border-radius:999px;padding:2px 9px}
+      .sc-win{display:block;font-size:.82rem;color:#454b58;margin-top:2px}
+      .sc-win b{color:#c20025}
+      .sc-demo{display:inline-block;margin-top:6px;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#b97e04;border:1px solid rgba(212,175,55,.6);border-radius:999px;padding:2px 8px}
+      .sc1 .sc-art{background:linear-gradient(140deg,#f7b733,#e8890c)}
+      .sc2 .sc-art{background:linear-gradient(140deg,#2dd4bf,#0f766e)}
+      .sc3 .sc-art{background:linear-gradient(140deg,#a78bfa,#6d28d9)}
+      .sc4 .sc-art{background:linear-gradient(140deg,#fb7185,#be123c)}
+      .sc5 .sc-art{background:linear-gradient(140deg,#3b82f6,#1e3a8a)}
+      .sc6 .sc-art{background:linear-gradient(140deg,#4ade80,#15803d)}
+      .sc7 .sc-art{background:linear-gradient(140deg,#fb923c,#c2410c)}
+      .sc8 .sc-art{background:linear-gradient(140deg,#f472b6,#9d174d)}
+      .sc-dots{display:flex;gap:7px;justify-content:center;margin-top:2px}
+      .sc-dot{width:9px;height:9px;border-radius:999px;border:none;background:rgba(11,18,32,.25);cursor:pointer;padding:0;min-height:0}
+      .sc-dot.active{width:26px;background:#c78a06}
+
+      /* ---------- two draws every month + high frequency ---------- */
+      .dl-grid,.hf-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.8vw,20px)}
+      @media (max-width:760px){.dl-grid,.hf-grid{grid-template-columns:1fr}}
+      .dl-card,.hf-card{border-radius:18px;padding:clamp(14px,2.4vh,20px) clamp(16px,2.2vw,24px);color:#fff;box-shadow:0 16px 34px rgba(10,15,30,.35);border:1.5px solid rgba(212,175,55,.55);display:flex;flex-direction:column;gap:8px}
+      .dl-card.navy,.hf-card.navy{background:linear-gradient(140deg,#16233c,#0e1a2e 70%)}
+      .dl-card.green{background:linear-gradient(140deg,#14532d,#052e16 75%)}
+      .hf-card.purple{background:linear-gradient(140deg,#4c1d95,#2e1065 75%)}
+      .dl-card h3,.hf-card h3{font-weight:800;font-size:clamp(1.15rem,2.4vw,1.45rem);margin:0;color:#fff}
+      .dl-amt{font-weight:900;font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.05;color:#ffd34d}
+      .dl-date{color:#c7cee0;font-size:.92rem}
+      .dl-date b{color:#fff}
+      .dl-note{font-size:.85rem;color:#9aa5bc}
+      .dl-card .btn,.hf-card .btn{align-self:flex-start}
+      .hf-chips{display:flex;gap:6px;flex-wrap:wrap}
+      .hf-chip{font-family:var(--mono);font-size:.72rem;font-weight:700;border-radius:999px;padding:3px 10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#ffe9a8}
+      .hf-mult{font-weight:900;font-size:clamp(1.6rem,3.6vw,2.2rem);color:#ffd34d;line-height:1.05}
+      .hf-timer{font-family:var(--mono);font-size:.85rem;font-weight:700;color:#fff}
+      .hf-timer b{color:#ffd34d;font-size:1.05rem}
+
+      /* ---------- past draws carousel ---------- */
+      .pd-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+      .pd-head h2{margin:0}
+      .pd-nav{display:flex;gap:6px}
+      .pd-nav .sc-arrow{width:32px;height:32px;min-height:32px;font-size:1.1rem}
+      #past-draws .draws-stack{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:6px;scrollbar-width:none}
+      #past-draws .draws-stack::-webkit-scrollbar{display:none}
+      #past-draws .draw-card{flex:0 0 min(320px,86%);scroll-snap-align:start}
+
+      /* ---------- dark slate footer ---------- */
+      footer.site{background:linear-gradient(180deg,#1a2438,#0b1220 80%);border-top:1.5px solid rgba(212,175,55,.55);color:#c7cee0;margin:clamp(10px,2vh,16px) -20px 0;padding:14px 20px 18px;border-radius:0}
+      footer.site .f-brand{color:#ffd34d;font-size:1.05rem}
+      footer.site a{color:#e8e2d6}
+      footer.site a:hover{color:#ffd34d}
+      footer.site .sa-link{color:#ffd34d;border-color:rgba(212,175,55,.6);background:transparent}
+      footer.site .fine{color:#9aa5bc}
     </style>
   </head>
   <body>
@@ -1944,6 +2091,8 @@
       </div>
 
       <div class="hero">
+        <div class="hero-carousel" id="heroCarousel">
+          <div class="hero-slide active" data-slide="0">
         <div class="wrap">
           <div class="hero-copy">
             <span class="kicker">wini99 · Draw Results</span>
@@ -2041,6 +2190,33 @@
             </div>
           </div>
         </div>
+          </div>
+          <div class="hero-slide hc-alt" data-slide="1">
+            <div class="wrap hc-wrap">
+              <span class="kicker">wini99 · Latest Draw — 01 November 2026</span>
+              <span class="hc-num">423224</span>
+              <div class="rp-balls hc-balls" role="img" aria-label="First prize number 4 2 3 2 2 4"><span class="rball">4</span><span class="rball">2</span><span class="rball">3</span><span class="rball">2</span><span class="rball">2</span><span class="rball">4</span></div>
+              <span class="hc-prize">1st Prize · QR 6,000,000</span>
+              <span class="demo-badge">Sample / Demo</span>
+              <div class="hero-actions"><a class="btn btn-red" href="#checker">Check Ticket</a><a class="btn btn-outline-w" href="#results">Results</a></div>
+            </div>
+          </div>
+          <div class="hero-slide hc-alt" data-slide="2">
+            <div class="wrap hc-wrap">
+              <span class="kicker">wini99 app · Free</span>
+              <h2 class="hc-title">Single <b>1–10</b> · 9.5x<br>Triple <b>000–999</b> · 950x</h2>
+              <p class="hc-sub">Draw every 1 minute — play in the wini99 app.</p>
+              <div class="hero-actions"><a class="btn btn-red" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">Open wini99 app</a><a class="btn btn-outline-w" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">Free Download</a></div>
+            </div>
+          </div>
+          <button class="hc-prev" type="button" aria-label="Previous slide">‹</button>
+          <button class="hc-next" type="button" aria-label="Next slide">›</button>
+          <div class="hc-dots" role="tablist" aria-label="Hero slides">
+            <button class="hc-dot active" type="button" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+            <button class="hc-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+            <button class="hc-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+          </div>
+        </div>
       </div>
 
       <div class="strip">
@@ -2070,6 +2246,59 @@
           </div>
         </div>
       </div>
+
+      <section class="ticket-builder" aria-label="Buy a ticket quickly">
+        <div class="wrap">
+          <span class="tb-eyebrow">Buy A Ticket Quickly</span>
+          <div class="tb-grid">
+            <div class="tb-left">
+              <span class="tb-kicker">wini99 · Lucky Draw</span>
+              <span class="tb-date">Draw Date: <b>Tuesday, 1 December 2026 · 2:30 PM AST</b></span>
+              <div class="mirror-cd" role="timer" aria-label="Countdown to the next draw">
+                <div class="mc-cell"><div class="mc-v mc-h">–</div><div class="mc-u">Hours</div></div>
+                <div class="mc-sep" aria-hidden="true">:</div>
+                <div class="mc-cell"><div class="mc-v mc-m">–</div><div class="mc-u">Minutes</div></div>
+                <div class="mc-sep" aria-hidden="true">:</div>
+                <div class="mc-cell"><div class="mc-v mc-s">–</div><div class="mc-u">Seconds</div></div>
+              </div>
+              <div class="tb-jackpot">
+                <span class="tb-jackpot-label">Jackpot · 1st Prize</span>
+                <span class="tb-jackpot-amt">QR 6,000,000</span>
+              </div>
+              <span class="tb-pill">Guaranteed Draw · 1st &amp; 16th monthly</span>
+              <span class="tb-entry">1 Ticket · <b>QR 80</b> · 9 prize categories</span>
+              <a class="btn btn-gold" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">Open wini99 app</a>
+            </div>
+            <div class="tb-right">
+          <section class="checker" id="checker" aria-label="Ticket checker">
+            <h2>Check Your Ticket</h2>
+            <p>Enter your 6-digit number — checked against every prize tier of the sample draw. Ticket price <b style="color:#fff">QR 80</b> · 9 prize categories · 18+.</p>
+            <div class="ball-pick" id="ballPick" aria-hidden="true"><span class="pick-ball">·</span><span class="pick-ball">·</span><span class="pick-ball">·</span><span class="pick-ball">·</span><span class="pick-ball">·</span><span class="pick-ball">·</span></div>
+            <form id="checkForm" novalidate>
+              <div>
+                <label for="drawSelect">Draw date</label>
+                <select id="drawSelect">
+                  <option value="2026-11-01" selected>01 November 2026</option>
+                  <option value="2026-10-16">16 October 2026</option>
+                  <option value="2026-10-01">01 October 2026</option>
+                </select>
+              </div>
+              <div>
+                <label for="ticketInput">Ticket number</label>
+                <input id="ticketInput" type="text" inputmode="numeric" autocomplete="off" maxlength="6" placeholder="000000" aria-describedby="checkResult" />
+              </div>
+            <div class="tb-tools">
+              <button class="btn btn-outline-gold" id="easyPick" type="button">Easy Pick</button>
+              <span class="tb-qty"><button id="tbMinus" type="button" aria-label="Fewer tickets">−</button><span id="tbQty">1</span><button id="tbPlus" type="button" aria-label="More tickets">+</button><span class="tb-qty-lbl">ticket · <b id="tbTotal">QR 80</b></span></span>
+            </div>
+              <button class="btn btn-gold" type="submit">Check</button>
+            </form>
+            <div class="check-result" id="checkResult" role="status" aria-live="polite"></div>
+          </section>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div class="bottom-row" id="results">
         <div class="wrap">
@@ -2132,27 +2361,7 @@
             <button class="btn btn-red prev-view-btn" id="viewWinners" type="button">View Winners</button>
           </section>
 
-          <section class="checker" id="checker" aria-label="Ticket checker">
-            <h2>Check Your Ticket</h2>
-            <p>Enter your 6-digit number — checked against every prize tier of the sample draw. Ticket price <b style="color:#fff">QR 80</b> · 9 prize categories · 18+.</p>
-            <div class="ball-pick" id="ballPick" aria-hidden="true"><span class="pick-ball">·</span><span class="pick-ball">·</span><span class="pick-ball">·</span><span class="pick-ball">·</span><span class="pick-ball">·</span><span class="pick-ball">·</span></div>
-            <form id="checkForm" novalidate>
-              <div>
-                <label for="drawSelect">Draw date</label>
-                <select id="drawSelect">
-                  <option value="2026-11-01" selected>01 November 2026</option>
-                  <option value="2026-10-16">16 October 2026</option>
-                  <option value="2026-10-01">01 October 2026</option>
-                </select>
-              </div>
-              <div>
-                <label for="ticketInput">Ticket number</label>
-                <input id="ticketInput" type="text" inputmode="numeric" autocomplete="off" maxlength="6" placeholder="000000" aria-describedby="checkResult" />
-              </div>
-              <button class="btn btn-gold" type="submit">Check</button>
-            </form>
-            <div class="check-result" id="checkResult" role="status" aria-live="polite"></div>
-          </section>
+
         </div>
         <div class="big-count">
           <div class="bc-panel" role="timer" aria-label="Countdown to the next draw">
@@ -2175,6 +2384,102 @@
     <!-- ================= PAGE 2 ================= -->
     <div class="page page2">
       <div class="wrap">
+
+        <section class="cp-sec" id="scratch" aria-label="Scratch cards">
+          <div class="sc-head">
+            <h2>Scratch Cards</h2>
+            <span class="sc-nav"><button class="sc-arrow" id="scPrev" type="button" aria-label="Previous scratch cards">‹</button><button class="sc-arrow" id="scNext" type="button" aria-label="More scratch cards">›</button></span>
+          </div>
+          <div class="scratch-row" id="scratchRow">
+              <a class="sc-tile sc1" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">
+                <span class="sc-art"><span class="sc-ball">7</span></span>
+                <span class="sc-body"><span class="sc-price">QR 5</span><span class="sc-name">Golden Peacock</span><span class="sc-win">Win up to <b>QR 50,000</b></span><span class="sc-demo">Sample / Demo</span></span>
+              </a>
+              <a class="sc-tile sc2" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">
+                <span class="sc-art"><span class="sc-ball">3</span></span>
+                <span class="sc-body"><span class="sc-price">QR 10</span><span class="sc-name">Desert Rose</span><span class="sc-win">Win up to <b>QR 100,000</b></span><span class="sc-demo">Sample / Demo</span></span>
+              </a>
+              <a class="sc-tile sc3" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">
+                <span class="sc-art"><span class="sc-ball">9</span></span>
+                <span class="sc-body"><span class="sc-price">QR 20</span><span class="sc-name">Pearl Dive</span><span class="sc-win">Win up to <b>QR 300,000</b></span><span class="sc-demo">Sample / Demo</span></span>
+              </a>
+              <a class="sc-tile sc4" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">
+                <span class="sc-art"><span class="sc-ball">5</span></span>
+                <span class="sc-body"><span class="sc-price">QR 50</span><span class="sc-name">Falcon Gold</span><span class="sc-win">Win up to <b>QR 1,000,000</b></span><span class="sc-demo">Sample / Demo</span></span>
+              </a>
+              <a class="sc-tile sc5" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">
+                <span class="sc-art"><span class="sc-ball">2</span></span>
+                <span class="sc-body"><span class="sc-price">QR 5</span><span class="sc-name">Doha Nights</span><span class="sc-win">Win up to <b>QR 50,000</b></span><span class="sc-demo">Sample / Demo</span></span>
+              </a>
+              <a class="sc-tile sc6" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">
+                <span class="sc-art"><span class="sc-ball">8</span></span>
+                <span class="sc-body"><span class="sc-price">QR 10</span><span class="sc-name">Qatar Pearl</span><span class="sc-win">Win up to <b>QR 100,000</b></span><span class="sc-demo">Sample / Demo</span></span>
+              </a>
+              <a class="sc-tile sc7" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">
+                <span class="sc-art"><span class="sc-ball">4</span></span>
+                <span class="sc-body"><span class="sc-price">QR 20</span><span class="sc-name">Golden Dhow</span><span class="sc-win">Win up to <b>QR 300,000</b></span><span class="sc-demo">Sample / Demo</span></span>
+              </a>
+              <a class="sc-tile sc8" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">
+                <span class="sc-art"><span class="sc-ball">6</span></span>
+                <span class="sc-body"><span class="sc-price">QR 50</span><span class="sc-name">Star of Doha</span><span class="sc-win">Win up to <b>QR 1,000,000</b></span><span class="sc-demo">Sample / Demo</span></span>
+              </a>
+          </div>
+          <div class="sc-dots" id="scratchDots" role="tablist" aria-label="Scratch card pages">
+            <button class="sc-dot active" type="button" role="tab" aria-selected="true" aria-label="Page 1"></button>
+            <button class="sc-dot" type="button" role="tab" aria-selected="false" aria-label="Page 2"></button>
+          </div>
+        </section>
+
+        <section class="cp-sec" id="monthly" aria-label="Two draws every month">
+          <h2>Two Draws Every Month</h2>
+          <div class="dl-grid">
+            <article class="dl-card navy">
+              <span class="tb-kicker">1st of the Month</span>
+              <h3>December Draw</h3>
+              <span class="dl-amt">QR 6,000,000</span>
+              <span class="dl-date">Next draw: <b>Tuesday, 1 December 2026 · 2:30 PM AST</b></span>
+              <div class="mirror-cd" role="timer" aria-label="Countdown to the next draw">
+                <div class="mc-cell"><div class="mc-v mc-h">–</div><div class="mc-u">Hours</div></div>
+                <div class="mc-sep" aria-hidden="true">:</div>
+                <div class="mc-cell"><div class="mc-v mc-m">–</div><div class="mc-u">Minutes</div></div>
+                <div class="mc-sep" aria-hidden="true">:</div>
+                <div class="mc-cell"><div class="mc-v mc-s">–</div><div class="mc-u">Seconds</div></div>
+              </div>
+              <span class="dl-note">Ticket QR 80 · 9 prize categories · Sample / Demo</span>
+              <a class="btn btn-gold" href="#checker">Check Ticket</a>
+            </article>
+            <article class="dl-card green">
+              <span class="tb-kicker">16th of the Month</span>
+              <h3>Mid-Month Draw</h3>
+              <span class="dl-amt">QR 6,000,000</span>
+              <span class="dl-date">Next: <b>Wednesday, 16 December 2026 · 2:30 PM AST</b> · <span id="dl16Days">in 19 days</span></span>
+              <span class="dl-note">Ticket QR 80 · 9 prize categories · Sample / Demo</span>
+              <a class="btn btn-gold" href="#checker">Check Ticket</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="cp-sec" id="highfreq" aria-label="High frequency games">
+          <h2>High Frequency — Draw Every 1 Minute</h2>
+          <div class="hf-grid">
+            <article class="hf-card purple">
+              <span class="tb-kicker">Single Number</span>
+              <span class="hf-mult">Win 9.5x</span>
+              <div class="hf-chips"><span class="hf-chip">×9.5</span><span class="hf-chip">Pick 1 digit · 1–10</span></div>
+              <span class="hf-timer">Next Draw: <b class="hf-t">00:41</b></span>
+              <span class="dl-note">Draw every 1 minute · in the wini99 app</span>
+              <a class="btn btn-gold" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">Play</a>
+            </article>
+            <article class="hf-card navy">
+              <span class="tb-kicker">Triple Number (3D)</span>
+              <span class="hf-mult">Win up to 950x</span>
+              <div class="hf-chips"><span class="hf-chip">×950 exact</span><span class="hf-chip">×900 box</span><span class="hf-chip">Pick 000–999</span></div>
+              <span class="hf-timer">Next Draw: <b class="hf-t">00:41</b></span>
+              <span class="dl-note">Draw every 1 minute · in the wini99 app</span>
+              <a class="btn btn-gold" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">Play</a>
+            </article>
+          </div>
+        </section>
 
         <section class="jackpot-band" aria-label="Jackpot">
           <div class="jackpot-art" aria-hidden="true">
@@ -2273,7 +2578,7 @@
           </section>
 
           <section class="p2-col" id="past-draws" aria-label="Past draws">
-            <h2>Past draws</h2>
+            <div class="pd-head"><h2>Past draws</h2><span class="pd-nav"><button class="sc-arrow" id="pdPrev" type="button" aria-label="Previous past draw">‹</button><button class="sc-arrow" id="pdNext" type="button" aria-label="Next past draw">›</button></span></div>
             <div class="draws-stack">
               <article class="draw-card c1">
                 <div class="d-top"><div class="d-row1"><span class="d-date">01 November 2026</span> <span class="tag-latest">Latest · Sample</span> <span class="d-lbl">1st prize</span></div><div class="d-row2"><span class="d-val">423224</span><button class="mini-link" type="button" data-check-draw="2026-11-01">Check a ticket from this draw</button></div></div>
@@ -3245,6 +3550,142 @@
         }
         input.addEventListener("input", sync);
         sync();
+      })();
+
+
+      /* ---- hero carousel: 3 slides, auto-rotate, dots + arrows ---- */
+      (function(){
+        var car = document.getElementById("heroCarousel");
+        if (!car) return;
+        var slides = car.querySelectorAll(".hero-slide");
+        var dots = car.querySelectorAll(".hc-dot");
+        var prev = car.querySelector(".hc-prev");
+        var next = car.querySelector(".hc-next");
+        var i = 0, timer = null;
+        function show(n){
+          i = (n + slides.length) % slides.length;
+          slides.forEach(function(s, k){ s.classList.toggle("active", k === i); });
+          dots.forEach(function(d, k){
+            d.classList.toggle("active", k === i);
+            d.setAttribute("aria-selected", k === i ? "true" : "false");
+          });
+        }
+        function auto(){
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          timer = setInterval(function(){ show(i + 1); }, 6000);
+        }
+        function stop(){ if (timer){ clearInterval(timer); timer = null; } }
+        if (prev) prev.addEventListener("click", function(){ stop(); show(i - 1); auto(); });
+        if (next) next.addEventListener("click", function(){ stop(); show(i + 1); auto(); });
+        dots.forEach(function(d, k){ d.addEventListener("click", function(){ stop(); show(k); auto(); }); });
+        car.addEventListener("mouseenter", stop);
+        car.addEventListener("mouseleave", auto);
+        auto();
+      })();
+
+      /* ---- countdown mirrors: ticket builder + 1st-of-month card copy the big countdown ---- */
+      (function(){
+        var bigH = document.getElementById("bigCdH");
+        var bigM = document.getElementById("bigCdM");
+        var bigS = document.getElementById("bigCdS");
+        var bigCells = document.getElementById("bigCdCells");
+        if (!bigH || !bigCells) return;
+        function sync(){
+          var hidden = bigCells.style.display === "none";
+          document.querySelectorAll(".mirror-cd").forEach(function(box){
+            box.style.display = hidden ? "none" : "";
+            if (hidden) return;
+            var h = box.querySelector(".mc-h"), m = box.querySelector(".mc-m"), s = box.querySelector(".mc-s");
+            if (h) h.textContent = bigH.textContent;
+            if (m) m.textContent = bigM.textContent;
+            if (s) s.textContent = bigS.textContent;
+          });
+        }
+        setInterval(sync, 1000);
+        sync();
+      })();
+
+      /* ---- days until the 16 December 2026 draw ---- */
+      (function(){
+        var el = document.getElementById("dl16Days");
+        if (!el) return;
+        var target = new Date(Date.UTC(2026, 11, 16, 11, 30, 0));
+        var days = Math.max(0, Math.ceil((target.getTime() - Date.now()) / 86400000));
+        el.textContent = "in " + days + (days === 1 ? " day" : " days");
+      })();
+
+      /* ---- Easy Pick + ticket quantity (demo only — checker logic untouched) ---- */
+      (function(){
+        var input = document.getElementById("ticketInput");
+        if (!input) return;
+        var easy = document.getElementById("easyPick");
+        if (easy) easy.addEventListener("click", function(){
+          var n = "";
+          for (var k = 0; k < 6; k++) n += Math.floor(Math.random() * 10);
+          input.value = n;
+          input.dispatchEvent(new Event("input"));
+          input.focus();
+        });
+        var qtyEl = document.getElementById("tbQty");
+        var totEl = document.getElementById("tbTotal");
+        var minus = document.getElementById("tbMinus");
+        var plus = document.getElementById("tbPlus");
+        var q = 1;
+        function render(){
+          if (qtyEl) qtyEl.textContent = q;
+          if (totEl) totEl.textContent = "QR " + (q * 80);
+        }
+        if (minus) minus.addEventListener("click", function(){ if (q > 1){ q--; render(); } });
+        if (plus) plus.addEventListener("click", function(){ if (q < 10){ q++; render(); } });
+        render();
+      })();
+
+      /* ---- high-frequency 1-minute countdown (real 1-minute draw interval) ---- */
+      (function(){
+        function pad2(n){ return (n < 10 ? "0" : "") + n; }
+        function update(){
+          var now = new Date();
+          var str = "00:" + pad2(59 - now.getSeconds());
+          document.querySelectorAll(".hf-t").forEach(function(el){ el.textContent = str; });
+        }
+        setInterval(update, 1000);
+        update();
+      })();
+
+      /* ---- scratch cards carousel: arrows + page dots ---- */
+      (function(){
+        var row = document.getElementById("scratchRow");
+        if (!row) return;
+        var dots = document.querySelectorAll("#scratchDots .sc-dot");
+        function cardW(){
+          var c = row.querySelector(".sc-tile");
+          return c ? c.getBoundingClientRect().width + 14 : 300;
+        }
+        var prev = document.getElementById("scPrev");
+        var next = document.getElementById("scNext");
+        if (prev) prev.addEventListener("click", function(){ row.scrollBy({ left: -cardW(), behavior: "smooth" }); });
+        if (next) next.addEventListener("click", function(){ row.scrollBy({ left: cardW(), behavior: "smooth" }); });
+        dots.forEach(function(d, k){
+          d.addEventListener("click", function(){ row.scrollTo({ left: k * row.clientWidth, behavior: "smooth" }); });
+        });
+        row.addEventListener("scroll", function(){
+          var idx = Math.round(row.scrollLeft / Math.max(1, row.clientWidth));
+          dots.forEach(function(d, k){ d.classList.toggle("active", k === idx); });
+        }, { passive: true });
+      })();
+
+      /* ---- past draws carousel: arrows scroll the stack ---- */
+      (function(){
+        var stack = document.querySelector("#past-draws .draws-stack");
+        if (!stack) return;
+        function w(){
+          var c = stack.querySelector(".draw-card");
+          return c ? c.getBoundingClientRect().width + 12 : 320;
+        }
+        var prev = document.getElementById("pdPrev");
+        var next = document.getElementById("pdNext");
+        if (prev) prev.addEventListener("click", function(){ stack.scrollBy({ left: -w(), behavior: "smooth" }); });
+        if (next) next.addEventListener("click", function(){ stack.scrollBy({ left: w(), behavior: "smooth" }); });
       })();
 
         tick();
