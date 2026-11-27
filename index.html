@@ -530,6 +530,25 @@
       .check-result .total{font-weight:900}
       .check-result p{color:inherit;margin:4px 0 0;font-size:.8rem}
 
+      /* ticket-check modal — same look as the lower checker, on a light card */
+      .tc-card{max-width:520px}
+      .tc-card h2{margin:0 34px 6px 0;font-size:clamp(1.05rem,2.6vw,1.35rem);line-height:1.25;color:var(--ink);font-family:var(--display);font-weight:400;letter-spacing:.06em;text-transform:uppercase}
+      .tc-sub{margin:0 0 12px;color:var(--ink-soft);font-size:.9rem}
+      .tc-card form{display:grid;grid-template-columns:1.25fr 1fr auto;gap:8px;align-items:end}
+      .tc-card label{display:block;font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+      .tc-card select,.tc-card input{
+        width:100%;font:inherit;font-weight:600;color:var(--ink);
+        background:#fff;border:2px solid var(--line);border-radius:11px;padding:0 8px;
+        min-height:clamp(38px,5.8vh,46px);
+      }
+      .tc-card input{font-family:var(--mono);font-size:1.05rem;letter-spacing:.14em;font-weight:700;text-align:center;font-variant-numeric:tabular-nums}
+      .tc-card .btn{min-height:clamp(38px,5.8vh,46px);white-space:nowrap}
+      .tc-card .check-result.lose{background:#eef4fb;color:var(--ink)}
+      @media (max-width:520px){
+        .tc-card form{grid-template-columns:1fr 1fr}
+        .tc-card .btn{grid-column:1 / -1}
+      }
+
       /* ================= PAGE 2 — white JACKPOT + info ================= */
       .page2{background:linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);color:var(--tx)}
       .page2 .wrap{display:flex;flex-direction:column;height:100%;min-height:0;padding-top:clamp(5px,1.2vh,12px);padding-bottom:clamp(5px,1.2vh,10px);gap:clamp(5px,1.1vh,10px)}
@@ -1672,7 +1691,7 @@
           <nav class="main" aria-label="Main">
             <a href="#top">Home</a>
             <a href="#results">Results</a>
-            <a href="#checker">Check Ticket</a>
+            <a href="#checker" data-open-ticket>Check Ticket</a>
             <a href="#prizes">Prize Table</a>
             <a href="#past-draws">Past Draws</a>
             <a href="#faq">FAQ</a>
@@ -1701,7 +1720,7 @@
             <p class="lede">Latest <b>wini99</b> results for the draw of <b>Sunday, 1 November 2026</b> — shown as <b>sample / demo numbers</b> until confirmed official Qatar draw data is available. Check the winning numbers below, or enter your 6-digit ticket to check it instantly.</p>
             <div class="hero-actions">
               <a class="btn btn-red" href="#checker">Play Now!</a>
-              <a class="btn btn-outline-w" href="#checker">Check Ticket</a>
+              <a class="btn btn-outline-w" href="#checker" data-open-ticket>Check Ticket</a>
               <a class="btn btn-outline-w" href="#prizes">Prize Table</a>
             </div>
           </div>
@@ -1973,7 +1992,7 @@
               </div>
             </div>
             <div class="jackpot-actions">
-              <a class="btn btn-red" href="#checker">Join Now — Check Ticket</a>
+              <a class="btn btn-red" href="#checker" data-open-ticket>Join Now — Check Ticket</a>
               <a class="btn btn-dark" href="#results">Results</a>
             </div>
           </div>
@@ -2147,7 +2166,7 @@
           <div class="f-row">
             <span class="f-brand">WINI99</span>
             <a href="#results">Latest result</a>
-            <a href="#checker">Check ticket</a>
+            <a href="#checker" data-open-ticket>Check ticket</a>
             <a href="#prizes">Prize table</a>
             <a href="#past-draws">Past draws</a>
             <a href="#faq">FAQ</a>
@@ -2273,6 +2292,31 @@
       </div>
     </div>
 
+    <!-- ticket-check modal: answers in place, never scrolls to the lower checker -->
+    <div class="modal-overlay" id="ticketModal" hidden role="dialog" aria-modal="true" aria-labelledby="ticketModalTitle">
+      <div class="modal-card tc-card">
+        <button class="modal-close" id="ticketModalClose" type="button" aria-label="Close ticket checker">&times;</button>
+        <h2 id="ticketModalTitle">Check Your Ticket</h2>
+        <p class="tc-sub">Enter your 6-digit number — checked against every prize tier of the sample draw.</p>
+        <form id="ticketModalForm" novalidate>
+          <div>
+            <label for="ticketModalDraw">Draw date</label>
+            <select id="ticketModalDraw">
+              <option value="2026-11-01" selected>01 November 2026</option>
+              <option value="2026-10-16">16 October 2026</option>
+              <option value="2026-10-01">01 October 2026</option>
+            </select>
+          </div>
+          <div>
+            <label for="ticketModalInput">Ticket number</label>
+            <input id="ticketModalInput" type="text" inputmode="numeric" autocomplete="off" maxlength="6" placeholder="000000" aria-describedby="ticketModalResult" />
+          </div>
+          <button class="btn btn-gold" type="submit">Check</button>
+        </form>
+        <div class="check-result" id="ticketModalResult" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+
     <script>
       "use strict";
       /* SAMPLE / DEMO draw data for the wini99 page — placeholder numbers until official Qatar draw data is available (snapshot: 10 Nov 2026). */
@@ -2300,6 +2344,38 @@
         }
       };
       function qr(n){ return "QR " + n.toLocaleString("en-US"); }
+
+      /* ---- shared ticket check: one source of truth for the lower checker and the ticket modal ---- */
+      function runTicketCheck(t, drawKey, out){
+        out.className = "check-result show";
+        if (!/^\d{6}$/.test(t)){
+          out.classList.add("error");
+          out.innerHTML = "<b>Please enter a full 6-digit ticket number.</b>";
+          return;
+        }
+        var d = DRAWS[drawKey];
+        var wins = [];
+        if (t === d.first) wins.push(["1st prize", 6000000]);
+        if (d.near.indexOf(t) !== -1) wins.push(["Next to 1st prize", 100000]);
+        if (d.second && d.second.indexOf(t) !== -1) wins.push(["2nd prize", 200000]);
+        if (d.third && d.third.indexOf(t) !== -1) wins.push(["3rd prize", 80000]);
+        if (d.fourth && d.fourth.indexOf(t) !== -1) wins.push(["4th prize", 40000]);
+        if (d.fifth && d.fifth.indexOf(t) !== -1) wins.push(["5th prize", 20000]);
+        if (d.front3.indexOf(t.slice(0, 3)) !== -1) wins.push(["First 3 digits", 4000]);
+        if (d.last3.indexOf(t.slice(3)) !== -1) wins.push(["Last 3 digits", 4000]);
+        if (t.slice(4) === d.last2) wins.push(["Last 2 digits", 2000]);
+        if (wins.length){
+          var total = wins.reduce(function(s, w){ return s + w[1]; }, 0);
+          var items = wins.map(function(w){ return "<li>" + w[0] + " — <b>" + qr(w[1]) + "</b></li>"; }).join("");
+          out.classList.add("win");
+          out.innerHTML = "<b>Ticket " + t + " wins in the " + d.label + " draw!</b><ul>" + items +
+            "</ul><p class='total'>Total: " + qr(total) + " per ticket</p>" +
+            "<p>Sample / demo result — not an official draw.</p>";
+        } else {
+          out.classList.add("lose");
+          out.innerHTML = "<b>Ticket " + t + " did not win</b> in the " + d.label + " draw. The 1st prize was " + d.first + " — better luck in the next draw on the 1st / 16th.";
+        }
+      }
 
       /* ---- render full prize lists for the latest draw ---- */
       (function(){
@@ -2348,35 +2424,7 @@
         input.addEventListener("input", function(){ input.value = input.value.replace(/\D/g, "").slice(0, 6); });
         form.addEventListener("submit", function(ev){
           ev.preventDefault();
-          var t = input.value.trim();
-          out.className = "check-result show";
-          if (!/^\d{6}$/.test(t)){
-            out.classList.add("error");
-            out.innerHTML = "<b>Please enter a full 6-digit ticket number.</b>";
-            return;
-          }
-          var d = DRAWS[select.value];
-          var wins = [];
-          if (t === d.first) wins.push(["1st prize", 6000000]);
-          if (d.near.indexOf(t) !== -1) wins.push(["Next to 1st prize", 100000]);
-          if (d.second && d.second.indexOf(t) !== -1) wins.push(["2nd prize", 200000]);
-          if (d.third && d.third.indexOf(t) !== -1) wins.push(["3rd prize", 80000]);
-          if (d.fourth && d.fourth.indexOf(t) !== -1) wins.push(["4th prize", 40000]);
-          if (d.fifth && d.fifth.indexOf(t) !== -1) wins.push(["5th prize", 20000]);
-          if (d.front3.indexOf(t.slice(0, 3)) !== -1) wins.push(["First 3 digits", 4000]);
-          if (d.last3.indexOf(t.slice(3)) !== -1) wins.push(["Last 3 digits", 4000]);
-          if (t.slice(4) === d.last2) wins.push(["Last 2 digits", 2000]);
-          if (wins.length){
-            var total = wins.reduce(function(s, w){ return s + w[1]; }, 0);
-            var items = wins.map(function(w){ return "<li>" + w[0] + " — <b>" + qr(w[1]) + "</b></li>"; }).join("");
-            out.classList.add("win");
-            out.innerHTML = "<b>Ticket " + t + " wins in the " + d.label + " draw!</b><ul>" + items +
-              "</ul><p class='total'>Total: " + qr(total) + " per ticket</p>" +
-              "<p>Sample / demo result — not an official draw.</p>";
-          } else {
-            out.classList.add("lose");
-            out.innerHTML = "<b>Ticket " + t + " did not win</b> in the " + d.label + " draw. The 1st prize was " + d.first + " — better luck in the next draw on the 1st / 16th.";
-          }
+          runTicketCheck(input.value.trim(), select.value, out);
         });
         document.querySelectorAll("[data-check-draw]").forEach(function(b){
           b.addEventListener("click", function(){
@@ -2385,6 +2433,36 @@
             setTimeout(function(){ input.focus({ preventScroll: true }); }, 450);
           });
         });
+      })();
+
+      /* ---- ticket-check modal: answers in place, never scrolls to the lower checker ---- */
+      (function(){
+        var modal = document.getElementById("ticketModal");
+        var form = document.getElementById("ticketModalForm");
+        var input = document.getElementById("ticketModalInput");
+        var select = document.getElementById("ticketModalDraw");
+        var out = document.getElementById("ticketModalResult");
+        var lastFocus = null;
+        function openTicketModal(){
+          lastFocus = document.activeElement;
+          modal.hidden = false;
+          input.focus({ preventScroll: true });
+        }
+        function closeTicketModal(){
+          modal.hidden = true;
+          if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+        }
+        document.querySelectorAll("[data-open-ticket]").forEach(function(a){
+          a.addEventListener("click", function(ev){ ev.preventDefault(); openTicketModal(); });
+        });
+        input.addEventListener("input", function(){ input.value = input.value.replace(/\D/g, "").slice(0, 6); });
+        form.addEventListener("submit", function(ev){
+          ev.preventDefault();
+          runTicketCheck(input.value.trim(), select.value, out);
+        });
+        document.getElementById("ticketModalClose").addEventListener("click", closeTicketModal);
+        modal.addEventListener("click", function(ev){ if (ev.target === modal) closeTicketModal(); });
+        document.addEventListener("keydown", function(ev){ if (ev.key === "Escape" && !modal.hidden) closeTicketModal(); });
       })();
 
       /* ---- previous draw winner list: modal + PDF + Excel (all client-side, sample/demo data) ---- */
