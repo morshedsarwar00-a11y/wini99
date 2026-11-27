@@ -2080,6 +2080,21 @@
       .hero-slide.hc-alt .kicker{display:inline-flex}
       /* big JACKPOT word above the amount in the top jackpot block */
       .tb-jackpot-word{display:block;font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,4.5vw,2.7rem);line-height:1;color:#fff;letter-spacing:.02em}
+
+      /* ---------- slim jackpot poster (2026-11-27) ----------
+         The 480px poster pushed the jackpot + buy-ticket block below the
+         fold on short viewports. The banner is now a slim strip: the
+         anchor gets a viewport-relative height and the image crops with
+         object-fit (never distorts); object-position keeps the
+         MULTIPLIER / JACKPOT! headline in frame at every height. */
+      .jackpot-banner a{height:clamp(110px,24vh,200px)}
+      .jackpot-banner img{height:100%;object-fit:cover;object-position:center 20%}
+      /* ---------- big-countdown note for the >24h window (2026-11-27) ----------
+         With the H/M/S tiles hidden by the 24h cap, the white card's right
+         side was blank. The note fills it; tick() mirrors the tiles'
+         visibility (the note shows only while the tiles are hidden). */
+      .bc-note{margin-left:auto;font-family:var(--mono);font-size:.78rem;font-weight:700;letter-spacing:.04em;line-height:1.55;color:#8a6d1f;text-align:right;max-width:470px}
+      @media (max-width:760px){.bc-note{margin-left:0;text-align:center}}
     </style>
   </head>
   <body>
@@ -2308,6 +2323,7 @@
               <div class="bc-sep" aria-hidden="true">:</div>
               <div class="bc-cell"><div class="bc-v" id="bigCdS">–</div><div class="bc-u">Seconds</div></div>
             </div>
+            <span class="bc-note" id="bigCdNote" style="display:none">Live countdown starts 24 hours before the draw · Ticket QR 80 · 9 prize categories</span>
           </div>
         </div>
       </div>
@@ -3288,6 +3304,7 @@
         var bigS = document.getElementById("bigCdS");
         var bigCells = document.getElementById("bigCdCells");
         var bigDate = document.getElementById("bigCdDate");
+        var bigNote = document.getElementById("bigCdNote");
         var dateFmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Qatar", weekday: "long", day: "numeric", month: "long", year: "numeric" });
         var shortFmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Qatar", day: "numeric", month: "long", year: "numeric" });
         var timeFmt = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Qatar", hour: "numeric", minute: "2-digit", hour12: true });
@@ -3400,8 +3417,10 @@
           if (diff > 24 * 3600 * 1000){
             /* more than 24h to go: date only, no countdown tiles */
             if (bigCells) bigCells.style.display = "none";
+            if (bigNote) bigNote.style.display = "";
           } else {
             if (bigCells) bigCells.style.display = "";
+            if (bigNote) bigNote.style.display = "none";
             bigH.textContent = pad(Math.floor(diff / 3600000));
             bigM.textContent = pad(Math.floor(diff % 3600000 / 60000));
             bigS.textContent = pad(Math.floor(diff % 60000 / 1000));
