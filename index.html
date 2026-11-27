@@ -1910,7 +1910,7 @@
       /* serif display type for big headings + prize figures */
       .hero h1,.p2-col h2,.results-panel h2,.prev-panel h2,.checker h2,.jackpot-copy h2,.app-head h2,footer.site .f-brand,.tb-jackpot-amt,.dl-amt,.hf-mult,.hc-num,.hc-title,.sc-name{font-family:var(--serif);letter-spacing:.01em}
       /* gold hairline under section headings */
-      .p2-col h2,.cp-sec h2{position:relative;padding-bottom:10px}
+      .p2-col h2,.cp-sec h2{position:relative;padding-bottom:10px;margin-top:0}
       .p2-col h2::after,.cp-sec h2::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:3px;border-radius:2px;background:linear-gradient(90deg,#ffd34d,#c78a06)}
       /* jackpot numerals: big gold serif with a slow shine */
       .hero-jackpot .hj-amt,.tb-jackpot-amt{
@@ -1936,11 +1936,11 @@
       .hero-carousel{position:relative;z-index:1;display:grid;width:100%}
       .hero-slide{grid-area:1/1;display:flex;flex-direction:column;justify-content:center;visibility:hidden;opacity:0;pointer-events:none}
       .hero-slide.active{visibility:visible;opacity:1;pointer-events:auto}
-      .hero-slide.hc-alt .wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(8px,1.6vh,14px);padding:clamp(18px,3.6vh,32px) 20px}
-      .hc-num{font-weight:900;font-size:clamp(2.6rem,min(9vw,4.6rem));line-height:1;color:#fff;text-shadow:0 3px 0 rgba(120,40,0,.25),0 10px 30px rgba(120,40,0,.35);letter-spacing:.04em}
+      .hero-slide.hc-alt .wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;padding:clamp(10px,2vh,16px) 20px}
+      .hc-num{font-weight:900;font-size:clamp(2.4rem,8vw,3.8rem);line-height:1;color:#fff;text-shadow:0 3px 0 rgba(120,40,0,.25),0 10px 30px rgba(120,40,0,.35);letter-spacing:.04em}
       .hc-balls{justify-content:center}
       .hc-prize{font-weight:800;font-size:clamp(1.1rem,2.6vw,1.5rem);color:#5c0012}
-      .hc-title{font-weight:900;font-size:clamp(1.5rem,min(4.6vw,2.6rem));line-height:1.15;color:#fff;text-shadow:0 2px 10px rgba(120,40,0,.35);margin:0}
+      .hc-title{font-weight:900;font-size:clamp(1.5rem,4.6vw,2.6rem);line-height:1.15;color:#fff;text-shadow:0 2px 10px rgba(120,40,0,.35);margin:0}
       .hc-title b{color:#ffe9a8}
       .hc-sub{color:#fff3d6;font-size:clamp(.9rem,2vw,1.05rem);margin:0}
       .hc-prev,.hc-next{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:42px;height:42px;min-height:42px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);background:rgba(11,18,32,.35);color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
@@ -1955,7 +1955,7 @@
       @media (max-width:760px){.hc-prev,.hc-next{display:none}}
 
       /* ---------- ticket builder ---------- */
-      .ticket-builder{margin:clamp(10px,2vh,18px) 0 clamp(8px,1.8vh,16px)}
+      .ticket-builder{margin:clamp(8px,1.6vh,14px) 0}
       .tb-eyebrow{display:block;text-align:center;font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#ffd34d;margin-bottom:10px}
       .tb-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(12px,1.8vw,20px);align-items:stretch}
       @media (max-width:760px){.tb-grid{grid-template-columns:1fr}}
@@ -1964,7 +1964,7 @@
       .tb-date{font-size:.92rem;color:#c7cee0}
       .tb-date b{color:#fff}
       .tb-jackpot-label{display:block;font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#ffd34d}
-      .tb-jackpot-amt{display:block;font-weight:900;font-size:clamp(2rem,min(5vw,3.2rem));line-height:1.05}
+      .tb-jackpot-amt{display:block;font-weight:900;font-size:clamp(2rem,5vw,3.2rem);line-height:1.05}
       .tb-pill{display:inline-block;border:1.5px solid rgba(212,175,55,.6);border-radius:999px;padding:3px 12px;font-size:.75rem;font-weight:700;color:#ffd34d}
       .tb-entry{font-size:.9rem;color:#c7cee0}
       .tb-entry b{color:#fff}
@@ -1987,7 +1987,7 @@
       @media (min-width:761px){.bottom-row .wrap{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}}
 
       /* ---------- scratch cards ---------- */
-      .cp-sec{margin:clamp(14px,2.6vh,22px) 0}
+      .cp-sec{margin:clamp(10px,2vh,16px) 0}
       .sc-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:10px}
       .sc-head h2{margin:0}
       .sc-nav{display:flex;gap:6px}
@@ -2021,7 +2021,7 @@
       /* ---------- two draws every month + high frequency ---------- */
       .dl-grid,.hf-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.8vw,20px)}
       @media (max-width:760px){.dl-grid,.hf-grid{grid-template-columns:1fr}}
-      .dl-card,.hf-card{border-radius:18px;padding:clamp(14px,2.4vh,20px) clamp(16px,2.2vw,24px);color:#fff;box-shadow:0 16px 34px rgba(10,15,30,.35);border:1.5px solid rgba(212,175,55,.55);display:flex;flex-direction:column;gap:8px}
+      .dl-card,.hf-card{border-radius:18px;padding:clamp(12px,2vh,16px) clamp(16px,2.2vw,24px);color:#fff;box-shadow:0 16px 34px rgba(10,15,30,.35);border:1.5px solid rgba(212,175,55,.55);display:flex;flex-direction:column;gap:8px}
       .dl-card.navy,.hf-card.navy{background:linear-gradient(140deg,#16233c,#0e1a2e 70%)}
       .dl-card.green{background:linear-gradient(140deg,#14532d,#052e16 75%)}
       .hf-card.purple{background:linear-gradient(140deg,#4c1d95,#2e1065 75%)}
@@ -2047,7 +2047,7 @@
       #past-draws .draw-card{flex:0 0 min(320px,86%);scroll-snap-align:start}
 
       /* ---------- dark slate footer ---------- */
-      footer.site{background:linear-gradient(180deg,#1a2438,#0b1220 80%);border-top:1.5px solid rgba(212,175,55,.55);color:#c7cee0;margin:clamp(10px,2vh,16px) -20px 0;padding:14px 20px 18px;border-radius:0}
+      footer.site{background:linear-gradient(180deg,#1a2438,#0b1220 80%);border-top:1.5px solid rgba(212,175,55,.55);color:#c7cee0;margin:clamp(8px,1.6vh,12px) -20px 0;padding:14px 20px 18px;border-radius:0}
       footer.site .f-brand{color:#ffd34d;font-size:1.05rem}
       footer.site a{color:#e8e2d6}
       footer.site a:hover{color:#ffd34d}
@@ -2065,6 +2065,21 @@
       .page2 .wrap{height:auto;flex:none}
       html{scroll-snap-type:none}
       .page{scroll-snap-align:none}
+
+      /* ---------- hero: orange band REMOVED, navy carousel band (2026-11-27) ----------
+         Slide 0 (orange sunburst + results heading + buttons + jackpot
+         card) is deleted; the carousel now holds only the result
+         + app-promo slides. The orange background, sunburst rays and
+         confetti are switched off, the hero no longer stretches, the
+         prize line goes gold so it reads on navy, and the alt-slide
+         kicker is restored (the FINAL-4 "kicker dropped" rule hid it on
+         every hero slide). */
+      .hero{flex:none;background:linear-gradient(140deg,#16233c,#0e1a2e 75%);padding-top:0;padding-bottom:0;border-top:1.5px solid rgba(212,175,55,.55);border-bottom:1.5px solid rgba(212,175,55,.55)}
+      .hero::before,.hero::after{display:none}
+      .hc-prize{color:#ffd34d}
+      .hero-slide.hc-alt .kicker{display:inline-flex}
+      /* big JACKPOT word above the amount in the top jackpot block */
+      .tb-jackpot-word{display:block;font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,4.5vw,2.7rem);line-height:1;color:#fff;letter-spacing:.02em}
     </style>
   </head>
   <body>
@@ -2106,163 +2121,6 @@
         </div>
       </div>
 
-      <div class="hero">
-        <div class="hero-carousel" id="heroCarousel">
-          <div class="hero-slide active" data-slide="0" aria-hidden="false">
-        <div class="wrap">
-          <div class="hero-copy">
-            <span class="kicker">wini99 · Draw Results</span>
-            <h1>Wini99 Lottery <span class="red">Results</span> — <span class="date">01 November 2026</span></h1>
-            <p class="lede">Latest <b>wini99</b> results for the draw of <b>Sunday, 1 November 2026</b> — shown as <b>sample / demo numbers</b> until confirmed official Qatar draw data is available. Check the winning numbers below, or enter your 6-digit ticket to check it instantly.</p>
-            <div class="hero-actions">
-              <a class="btn btn-red" href="#checker">Play Now!</a>
-              <a class="btn btn-outline-w" href="#checker">Check Ticket</a>
-              <a class="btn btn-outline-w" href="#prizes">Prize Table</a>
-            </div>
-          </div>
-
-          <div class="hero-jackpot" aria-label="Jackpot — 1st prize QR 6,000,000">
-            <span class="hj-label">Jackpot · 1st Prize</span>
-            <span class="hj-amt">QR 6,000,000</span>
-            <span class="hj-sub">01 November 2026 · Ticket QR 80</span>
-            <span class="demo-badge">Sample / Demo</span>
-          </div>
-
-          <div class="hero-art" aria-hidden="true">
-            <div class="art-box">
-              <div class="pot-tag">
-                <span class="pt-label">Current Pot</span>
-                <span class="pt-amt">QR 6,000,000</span>
-                <span class="demo-badge">Sample / Demo</span>
-              </div>
-              <svg viewBox="0 0 500 400" role="img" aria-label="Lottery balls, tickets and gold coins">
-                <defs>
-                  <radialGradient id="heroRed" cx="34%" cy="28%" r="85%">
-                    <stop offset="0%" stop-color="#ff8fa3"/>
-                    <stop offset="45%" stop-color="#f0032c"/>
-                    <stop offset="100%" stop-color="#8f001c"/>
-                  </radialGradient>
-                  <radialGradient id="heroGold" cx="34%" cy="28%" r="85%">
-                    <stop offset="0%" stop-color="#eaf6ff"/>
-                    <stop offset="45%" stop-color="#8ec9f8"/>
-                    <stop offset="100%" stop-color="#2f7fc4"/>
-                  </radialGradient>
-                  <linearGradient id="coinG" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#a9d6fb"/>
-                    <stop offset="100%" stop-color="#4a9fe8"/>
-                  </linearGradient>
-                </defs>
-                <!-- tickets behind the balls -->
-                <g transform="rotate(14 424 128)">
-                  <rect x="368" y="72" width="118" height="74" rx="10" fill="#1d4ed8"/>
-                  <rect x="368" y="72" width="118" height="74" rx="10" fill="none" stroke="#bfdbfe" stroke-width="2" stroke-dasharray="5 5"/>
-                  <text x="427" y="105" text-anchor="middle" font-family="Anton, sans-serif" font-size="21" fill="#ffffff" letter-spacing="2">LOTTERY</text>
-                  <text x="427" y="128" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#bfdbfe">1st · 16th</text>
-                </g>
-                <g transform="rotate(-11 76 108)">
-                  <rect x="18" y="66" width="118" height="74" rx="10" fill="#e4022d"/>
-                  <rect x="18" y="66" width="118" height="74" rx="10" fill="none" stroke="#ffd9de" stroke-width="2" stroke-dasharray="5 5"/>
-                  <text x="77" y="99" text-anchor="middle" font-family="Anton, sans-serif" font-size="23" fill="#ffffff" letter-spacing="3">QATAR</text>
-                  <text x="77" y="122" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#ffd9de">QR 80</text>
-                </g>
-                <!-- coin stacks -->
-                <g fill="url(#coinG)" stroke="#2f7fc4" stroke-width="1.6">
-                  <ellipse cx="70" cy="356" rx="46" ry="13"/>
-                  <ellipse cx="70" cy="342" rx="46" ry="13"/>
-                  <ellipse cx="70" cy="328" rx="46" ry="13"/>
-                  <ellipse cx="436" cy="360" rx="52" ry="14"/>
-                  <ellipse cx="436" cy="345" rx="52" ry="14"/>
-                  <ellipse cx="436" cy="330" rx="52" ry="14"/>
-                  <ellipse cx="436" cy="315" rx="52" ry="14"/>
-                </g>
-                <g fill="none" stroke="#d8efff" stroke-width="2" opacity=".8">
-                  <ellipse cx="70" cy="328" rx="30" ry="8"/>
-                  <ellipse cx="436" cy="315" rx="34" ry="9"/>
-                </g>
-                <circle cx="150" cy="352" r="17" fill="url(#coinG)" stroke="#2f7fc4" stroke-width="1.6"/>
-                <circle cx="356" cy="366" r="14" fill="url(#coinG)" stroke="#2f7fc4" stroke-width="1.6"/>
-                <!-- gold ball -->
-                <g class="floaty">
-                  <circle cx="128" cy="238" r="54" fill="url(#heroGold)"/>
-                  <circle cx="128" cy="238" r="30" fill="#fffdf4"/>
-                  <text x="128" y="252" text-anchor="middle" font-family="Anton, sans-serif" font-size="38" fill="#14507f">2</text>
-                  <ellipse cx="108" cy="206" rx="17" ry="9" fill="#ffffff" opacity=".5" transform="rotate(-24 108 206)"/>
-                </g>
-                <!-- big red ball -->
-                <g>
-                  <circle cx="292" cy="222" r="112" fill="url(#heroRed)"/>
-                  <circle cx="292" cy="222" r="62" fill="#ffffff"/>
-                  <text x="292" y="248" text-anchor="middle" font-family="Anton, sans-serif" font-size="76" fill="#c20025">4</text>
-                  <ellipse cx="240" cy="152" rx="42" ry="20" fill="#ffffff" opacity=".38" transform="rotate(-24 240 152)"/>
-                  <circle cx="292" cy="222" r="112" fill="none" stroke="#5c000f" stroke-opacity=".35" stroke-width="2"/>
-                </g>
-                <!-- sparkles -->
-                <g fill="#7cc0f7">
-                  <path d="M452 190l3.5 9 9 3.5-9 3.5-3.5 9-3.5-9-9-3.5 9-3.5z"/>
-                  <path d="M52 176l2.6 6.6 6.6 2.6-6.6 2.6-2.6 6.6-2.6-6.6-6.6-2.6 6.6-2.6z"/>
-                  <path d="M398 44l2.6 6.6 6.6 2.6-6.6 2.6-2.6 6.6-2.6-6.6-6.6-2.6 6.6-2.6z"/>
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-          </div>
-          <div class="hero-slide hc-alt" data-slide="1" aria-hidden="true">
-            <div class="wrap hc-wrap">
-              <span class="kicker">wini99 · Latest Draw — 01 November 2026</span>
-              <span class="hc-num">423224</span>
-              <div class="rp-balls hc-balls" role="img" aria-label="First prize number 4 2 3 2 2 4"><span class="rball">4</span><span class="rball">2</span><span class="rball">3</span><span class="rball">2</span><span class="rball">2</span><span class="rball">4</span></div>
-              <span class="hc-prize">1st Prize · QR 6,000,000</span>
-              <span class="demo-badge">Sample / Demo</span>
-              <div class="hero-actions"><a class="btn btn-red" href="#checker">Check Ticket</a><a class="btn btn-outline-w" href="#results">Results</a></div>
-            </div>
-          </div>
-          <div class="hero-slide hc-alt" data-slide="2" aria-hidden="true">
-            <div class="wrap hc-wrap">
-              <span class="kicker">wini99 app · Free</span>
-              <h2 class="hc-title">Single <b>1–10</b> · 9.5x<br>Triple <b>000–999</b> · 950x</h2>
-              <p class="hc-sub">Draw every 1 minute — play in the wini99 app.</p>
-              <div class="hero-actions"><a class="btn btn-red" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">Open wini99 app</a><a class="btn btn-outline-w" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">Free Download</a></div>
-            </div>
-          </div>
-          <button class="hc-prev" type="button" aria-label="Previous slide">‹</button>
-          <button class="hc-next" type="button" aria-label="Next slide">›</button>
-          <div class="hc-dots" role="tablist" aria-label="Hero slides">
-            <button class="hc-dot active" type="button" role="tab" aria-selected="true" aria-label="Slide 1"></button>
-            <button class="hc-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 2"></button>
-            <button class="hc-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 3"></button>
-          </div>
-        </div>
-      </div>
-
-      <div class="strip">
-        <div class="wrap">
-          <div class="ticket-strip is-waiting" id="ticketStrip" role="timer" aria-label="Next draw and countdown">
-            <div class="ts-info">
-              <div class="ts-label" id="cdLabel">Next Draw</div>
-              <div class="ts-date" id="nextDrawTitle">Monday, 16 November 2026</div>
-              <div class="ts-note" id="cdNote">1st &amp; 16th monthly · 2:30pm Qatar time (AST) · countdown starts 2 min before · sample schedule</div>
-            </div>
-            <div class="ts-right">
-              <span class="live-badge" id="liveBadge"><span class="lb-dot" aria-hidden="true"></span> Live Draw Soon</span>
-              <div class="ts-wait" id="tsWait" aria-label="Draw time">
-                <div class="tw-time">2:30 PM AST</div>
-                <div class="tw-sub">Countdown starts 2 min before</div>
-              </div>
-              <div class="ts-count" aria-label="Draw starts in">
-                <div class="ts-cell ts-cell-days"><div class="v" id="cdD">–</div><div class="u">Days</div></div>
-                <div class="ts-sep ts-sep-days" aria-hidden="true">:</div>
-                <div class="ts-cell"><div class="v" id="cdH">–</div><div class="u">Hours</div></div>
-                <div class="ts-sep" aria-hidden="true">:</div>
-                <div class="ts-cell"><div class="v" id="cdM">–</div><div class="u">Minutes</div></div>
-                <div class="ts-sep" aria-hidden="true">:</div>
-                <div class="ts-cell"><div class="v" id="cdS">–</div><div class="u">Seconds</div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <section class="ticket-builder" aria-label="Buy a ticket quickly">
         <div class="wrap">
           <span class="tb-eyebrow">Buy A Ticket Quickly</span>
@@ -2278,8 +2136,9 @@
                 <div class="mc-cell"><div class="mc-v mc-s">–</div><div class="mc-u">Seconds</div></div>
               </div>
               <div class="tb-jackpot">
-                <span class="tb-jackpot-label">Jackpot · 1st Prize</span>
+                <span class="tb-jackpot-word">Jackpot</span>
                 <span class="tb-jackpot-amt">QR 6,000,000</span>
+                <span class="tb-jackpot-label">1st Prize</span>
               </div>
               <span class="tb-pill">Guaranteed Draw · 1st &amp; 16th monthly</span>
               <span class="tb-entry">1 Ticket · <b>QR 80</b> · 9 prize categories</span>
@@ -2315,6 +2174,63 @@
           </div>
         </div>
       </section>
+
+      <div class="hero">
+        <div class="hero-carousel" id="heroCarousel">
+          <div class="hero-slide hc-alt active" data-slide="0" aria-hidden="false">
+            <div class="wrap hc-wrap">
+              <span class="kicker">wini99 · Latest Draw — 01 November 2026</span>
+              <span class="hc-num">423224</span>
+              <div class="rp-balls hc-balls" role="img" aria-label="First prize number 4 2 3 2 2 4"><span class="rball">4</span><span class="rball">2</span><span class="rball">3</span><span class="rball">2</span><span class="rball">2</span><span class="rball">4</span></div>
+              <span class="hc-prize">1st Prize · QR 6,000,000</span>
+              <span class="demo-badge">Sample / Demo</span>
+              <div class="hero-actions"><a class="btn btn-red" href="#checker">Check Ticket</a><a class="btn btn-outline-w" href="#results">Results</a></div>
+            </div>
+          </div>
+          <div class="hero-slide hc-alt" data-slide="1" aria-hidden="true">
+            <div class="wrap hc-wrap">
+              <span class="kicker">wini99 app · Free</span>
+              <h2 class="hc-title">Single <b>1–10</b> · 9.5x<br>Triple <b>000–999</b> · 950x</h2>
+              <p class="hc-sub">Draw every 1 minute — play in the wini99 app.</p>
+              <div class="hero-actions"><a class="btn btn-red" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">Open wini99 app</a><a class="btn btn-outline-w" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">Free Download</a></div>
+            </div>
+          </div>
+          <button class="hc-prev" type="button" aria-label="Previous slide">‹</button>
+          <button class="hc-next" type="button" aria-label="Next slide">›</button>
+          <div class="hc-dots" role="tablist" aria-label="Hero slides">
+            <button class="hc-dot active" type="button" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+            <button class="hc-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="strip">
+        <div class="wrap">
+          <div class="ticket-strip is-waiting" id="ticketStrip" role="timer" aria-label="Next draw and countdown">
+            <div class="ts-info">
+              <div class="ts-label" id="cdLabel">Next Draw</div>
+              <div class="ts-date" id="nextDrawTitle">Monday, 16 November 2026</div>
+              <div class="ts-note" id="cdNote">1st &amp; 16th monthly · 2:30pm Qatar time (AST) · countdown starts 2 min before · sample schedule</div>
+            </div>
+            <div class="ts-right">
+              <span class="live-badge" id="liveBadge"><span class="lb-dot" aria-hidden="true"></span> Live Draw Soon</span>
+              <div class="ts-wait" id="tsWait" aria-label="Draw time">
+                <div class="tw-time">2:30 PM AST</div>
+                <div class="tw-sub">Countdown starts 2 min before</div>
+              </div>
+              <div class="ts-count" aria-label="Draw starts in">
+                <div class="ts-cell ts-cell-days"><div class="v" id="cdD">–</div><div class="u">Days</div></div>
+                <div class="ts-sep ts-sep-days" aria-hidden="true">:</div>
+                <div class="ts-cell"><div class="v" id="cdH">–</div><div class="u">Hours</div></div>
+                <div class="ts-sep" aria-hidden="true">:</div>
+                <div class="ts-cell"><div class="v" id="cdM">–</div><div class="u">Minutes</div></div>
+                <div class="ts-sep" aria-hidden="true">:</div>
+                <div class="ts-cell"><div class="v" id="cdS">–</div><div class="u">Seconds</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="bottom-row" id="results">
         <div class="wrap">
