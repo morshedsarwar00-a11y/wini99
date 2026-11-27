@@ -2095,39 +2095,6 @@
          visibility (the note shows only while the tiles are hidden). */
       .bc-note{margin-left:auto;font-family:var(--mono);font-size:.78rem;font-weight:700;letter-spacing:.04em;line-height:1.55;color:#8a6d1f;text-align:right;max-width:470px}
       @media (max-width:760px){.bc-note{margin-left:0;text-align:center}}
-
-      /* ---------- UAE-style hero slide (2026-11-27) ----------
-         New first carousel slide in the UAE Lottery hero layout
-         (headline + 3 prize badges + desk calendar + draw-time clock),
-         wini99 data only — every value is already on this page
-         (draws 1st & 16th monthly, QR 6,000,000 / 100,000 / 80,000,
-         December 2026, 2:30 PM AST). Warm orange/red gradient like the
-         reference; no UAE brand, logo, name or slogan copied. */
-      .hero-slide.hc-uae{background:radial-gradient(120% 140% at 88% -10%,rgba(255,255,255,.38),transparent 46%),linear-gradient(115deg,#7f1d1d 0%,#b91c1c 34%,#ea580c 68%,#f59e0b 100%)}
-      .hc-uae-wrap{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,46px);padding:clamp(14px,2.4vh,22px) clamp(18px,2.4vw,30px)}
-      .hc-uae-left{display:flex;flex-direction:column;align-items:flex-start;gap:10px;max-width:640px}
-      .hc-uae-eyebrow{font-family:var(--serif);font-style:italic;font-weight:700;font-size:clamp(1rem,2.2vw,1.35rem);color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.3)}
-      .hc-uae-head{font-family:var(--serif);font-weight:900;font-size:clamp(2rem,5.4vw,3.4rem);line-height:1;color:#fff;margin:0;text-shadow:0 3px 0 rgba(120,40,0,.25),0 12px 30px rgba(0,0,0,.35)}
-      .hc-uae-badges{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-      .hc-uae-badge{display:flex;flex-direction:column;align-items:center;gap:2px;background:linear-gradient(180deg,#fff7cc,#ffd34d 55%,#f6b41e);border:2px solid #fff3c4;border-radius:12px;padding:8px 14px;box-shadow:0 8px 18px rgba(0,0,0,.35),inset 0 1px 0 #fff;min-width:118px}
-      .hc-uae-badge b{font-family:var(--serif);font-weight:900;font-size:1.25rem;line-height:1;color:#b91c1c}
-      .hc-uae-badge i{font-style:normal;font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#7a4d00}
-      .hc-uae-badge-big{padding:10px 20px;min-width:176px}
-      .hc-uae-badge-big b{font-size:1.7rem}
-      .hc-uae-pill{display:inline-block;background:linear-gradient(180deg,#ffd34d,#f6b41e);color:#5c1a00;font-weight:800;font-size:.85rem;letter-spacing:.06em;border-radius:999px;padding:6px 16px;box-shadow:0 6px 14px rgba(0,0,0,.3)}
-      .hc-uae-right{display:flex;flex-direction:column;align-items:center;gap:10px}
-      .hc-uae-cal{width:232px;background:linear-gradient(180deg,#fffdf5,#f5eeda);border-radius:12px;padding:10px 12px 12px;box-shadow:0 16px 30px rgba(0,0,0,.4)}
-      .hc-uae-cal-title{display:block;text-align:center;font-family:var(--serif);font-weight:800;font-size:1rem;color:#5c1a00;letter-spacing:.08em;margin-bottom:6px}
-      .hc-uae-cal-days,.hc-uae-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
-      .hc-uae-cal-days span{font-family:var(--mono);font-size:.56rem;font-weight:700;letter-spacing:.04em;color:#8a6d1f;text-transform:uppercase}
-      .hc-uae-cal-days span.hc-uae-wd{color:#b91c1c}
-      .hc-uae-cal-grid span{font-family:var(--mono);font-size:.78rem;font-weight:600;color:#3d2c00;height:24px;display:grid;place-items:center;border-radius:50%}
-      .hc-uae-cal-grid span.hc-uae-mute{opacity:.32}
-      .hc-uae-cal-grid span.hc-uae-draw{background:radial-gradient(circle at 35% 30%,#fff3c4,#ffd34d 55%,#c78a06);color:#5c1a00;font-weight:800;box-shadow:0 2px 6px rgba(120,66,0,.45)}
-      .hc-uae-clock{display:flex;align-items:center;gap:8px}
-      .hc-uae-clock-tag{background:#b91c1c;color:#fff;font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-radius:6px;padding:4px 8px}
-      .hc-uae-clock-v{font-family:var(--mono);font-weight:700;font-size:1.25rem;color:#fff;background:#1b2436;border:1.5px solid rgba(255,211,77,.6);border-radius:8px;padding:4px 12px;box-shadow:0 6px 14px rgba(0,0,0,.35)}
-      @media (max-width:760px){.hc-uae-wrap{flex-direction:column;gap:12px}.hc-uae-left{align-items:center;text-align:center}}
     </style>
   </head>
   <body>
@@ -2225,29 +2192,7 @@
 
       <div class="hero">
         <div class="hero-carousel" id="heroCarousel">
-          <div class="hero-slide hc-uae active" data-slide="0" aria-hidden="false">
-            <div class="wrap hc-uae-wrap">
-              <div class="hc-uae-left">
-                <span class="hc-uae-eyebrow">Now Every Month</span>
-                <h2 class="hc-uae-head">1st &amp; 16th</h2>
-                <div class="hc-uae-badges">
-                  <span class="hc-uae-badge"><b>QR 100,000</b><i>2nd Prize</i></span>
-                  <span class="hc-uae-badge hc-uae-badge-big"><b>QR 6,000,000</b><i>Grand Prize</i></span>
-                  <span class="hc-uae-badge"><b>QR 80,000</b><i>3rd Prize</i></span>
-                </div>
-                <span class="hc-uae-pill">Two Draws Every Month</span>
-              </div>
-              <div class="hc-uae-right">
-                <div class="hc-uae-cal" role="img" aria-label="December 2026 calendar — wini99 draws on the 1st and 16th">
-                  <span class="hc-uae-cal-title">December 2026</span>
-                  <span class="hc-uae-cal-days"><span>Mon</span><span class="hc-uae-wd">Tue</span><span class="hc-uae-wd">Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></span>
-                  <span class="hc-uae-cal-grid"><span class="hc-uae-mute">30</span><span class="hc-uae-draw">1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span class="hc-uae-draw">16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span class="hc-uae-mute">1</span><span class="hc-uae-mute">2</span><span class="hc-uae-mute">3</span></span>
-                </div>
-                <div class="hc-uae-clock"><span class="hc-uae-clock-tag">Draw Time</span><span class="hc-uae-clock-v">2:30 PM</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="hero-slide hc-alt" data-slide="1" aria-hidden="true">
+          <div class="hero-slide hc-alt active" data-slide="0" aria-hidden="false">
             <div class="wrap hc-wrap">
               <span class="kicker">wini99 · Latest Draw — 01 November 2026</span>
               <span class="hc-num">423224</span>
@@ -2257,7 +2202,7 @@
               <div class="hero-actions"><a class="btn btn-red" href="#checker">Check Ticket</a><a class="btn btn-outline-w" href="#results">Results</a></div>
             </div>
           </div>
-          <div class="hero-slide hc-alt" data-slide="2" aria-hidden="true">
+          <div class="hero-slide hc-alt" data-slide="1" aria-hidden="true">
             <div class="wrap hc-wrap">
               <span class="kicker">wini99 app · Free</span>
               <h2 class="hc-title">Single <b>1–10</b> · 9.5x<br>Triple <b>000–999</b> · 950x</h2>
@@ -2270,7 +2215,6 @@
           <div class="hc-dots" role="tablist" aria-label="Hero slides">
             <button class="hc-dot active" type="button" role="tab" aria-selected="true" aria-label="Slide 1"></button>
             <button class="hc-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 2"></button>
-            <button class="hc-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 3"></button>
           </div>
         </div>
       </div>
