@@ -1652,6 +1652,256 @@
       .app-head h2 em{
         background-image:linear-gradient(180deg,#3d9bef 0%, var(--gold-deep) 55%, #14507f 105%);
       }
+          /* ===== ORANGE / GOLD RESTYLE (2026-11-27) =====
+         Visual restyle only, in an orange/gold lottery look (layout/mood — never
+         their brand, logo, photos or text; everything stays wini99).
+         The light-blue theme (FINAL 13/14) is replaced by orange/gold:
+         gold variables are restored to warm gold and every literal blue
+         override below is re-pointed to gold. Content, links, data and
+         all JS behaviour are unchanged. */
+      :root{
+        --gold:#f6b41e;
+        --gold-2:#ffd34d;
+        --gold-deep:#c78a06;
+        --gold-rich:#d4af37;
+        --gold-line:rgba(212,175,55,.5);
+        --shadow:0 14px 30px rgba(101,78,18,.16);
+        --shadow-sm:0 8px 20px rgba(101,78,18,.12);
+      }
+      /* page-1 ambient glows back to warm gold (was blue) */
+      .page1{
+        background:
+          radial-gradient(900px 480px at 78% 8%, rgba(228,2,45,.10), rgba(228,2,45,0) 62%),
+          radial-gradient(700px 500px at 8% 90%, rgba(212,175,55,.18), rgba(212,175,55,0) 60%),
+          radial-gradient(1200px 800px at 50% 120%, rgba(246,180,30,.16), rgba(246,180,30,0) 55%),
+          linear-gradient(180deg,#fdf8ec 0%,#fff6e3 100%);
+      }
+      /* gold buttons, badges and win states — deep-brown text on gold (was navy-blue) */
+      .btn-gold{color:#2a1a00;box-shadow:0 8px 20px rgba(246,180,30,.32)}
+      .btn-gold:hover{background-image:linear-gradient(180deg,#ffdf7e,var(--gold-2) 60%,var(--gold))}
+      .live-badge{color:#2a1a00}
+      .check-result.win{color:#2a1a00}
+      /* gold accents that FINAL 13 turned blue */
+      .hero h1 .date{color:#c78a06}
+      .kicker{color:#c78a06}
+      .num-chip{background:#fbf1d7}
+      .jackpot-art .jp-word{text-shadow:0 2px 0 rgba(212,175,55,.35)}
+      .topstrip{background:linear-gradient(180deg,#fbf1d7,#f6ead0);color:#4a4234}
+      header.site{background:#cdbfa4}
+      .checker{border-color:rgba(212,175,55,.6)}
+      .checker select,.checker input{border-color:#e8d5ae}
+      .app-sec{
+        background:
+          radial-gradient(460px 220px at 88% -10%, rgba(228,2,45,.10), rgba(228,2,45,0) 62%),
+          radial-gradient(300px 200px at 4% 110%, rgba(246,180,30,.22), rgba(246,180,30,0) 60%),
+          linear-gradient(120deg,#fffaf0 0%,#fdf3e0 55%,#fdeef1 100%);
+        border-color:rgba(212,175,55,.65);
+        box-shadow:0 14px 30px rgba(101,78,18,.16);
+      }
+      .app-head h2{text-shadow:0 2px 0 rgba(212,175,55,.35), 0 4px 10px rgba(101,78,18,.18)}
+      .app-head h2 em{
+        background-image:linear-gradient(180deg,#ffdf7e 0%, var(--gold-2) 38%, var(--gold) 68%, var(--gold-deep) 105%);
+        filter:drop-shadow(0 2px 3px rgba(90,40,0,.35)) drop-shadow(0 0 10px rgba(246,180,30,.45));
+      }
+      .feat{border-color:rgba(212,175,55,.5)}
+      .app-note{color:#7a6a4a}
+      .phone-cap{color:#b97e04}
+      .phone-link svg{filter:drop-shadow(0 10px 18px rgba(101,78,18,.28))}
+      .page2 footer.site a:hover{color:#b97e04}
+      table.prizes th,table.wm-table th{background:#f3e3bb;color:#6b4e12}
+      .easy-strip{
+        background:linear-gradient(90deg,#fdf3e0,#fffaf0 45%,#fbf1d7);
+        border-color:rgba(212,175,55,.6);
+        box-shadow:0 10px 24px rgba(101,78,18,.14);
+      }
+      .easy-strip .es-step i{color:#2a1a00;box-shadow:0 2px 6px rgba(101,78,18,.25)}
+      .jackpot-band .btn-dark{border-color:rgba(212,175,55,.65);box-shadow:0 6px 16px rgba(101,78,18,.14)}
+      .jackpot-band .btn-dark:hover{background-image:linear-gradient(180deg,#ffdf7e,var(--gold-2) 60%,var(--gold));color:#2a1a00}
+      .bc-panel{background:linear-gradient(180deg,#fffdf6,#fdf3e0);border-color:rgba(212,175,55,.55);box-shadow:0 14px 30px rgba(101,78,18,.16)}
+      .bc-label{color:#b97e04}
+      .bc-v{border-color:rgba(212,175,55,.65);box-shadow:0 6px 0 rgba(212,175,55,.35), 0 8px 20px rgba(101,78,18,.12)}
+      .bc-u{color:#b97e04}
+      .bc-sep{color:var(--gold-deep)}
+      .dm-card{
+        border-color:rgba(212,175,55,.65);
+        background:
+          radial-gradient(700px 340px at 50% -10%, rgba(228,2,45,.55), rgba(228,2,45,0) 62%),
+          radial-gradient(500px 300px at 50% 115%, rgba(246,180,30,.22), rgba(246,180,30,0) 60%),
+          linear-gradient(180deg,#1b0a12,#0a0f1e);
+      }
+      .big-ball{
+        background-image:radial-gradient(circle at 32% 26%, #fff3c4 0%, var(--gold-2) 34%, var(--gold) 62%, var(--gold-deep) 100%);
+        box-shadow:inset 0 -10px 18px rgba(120,66,0,.45), inset 0 8px 12px rgba(255,255,255,.5), 0 14px 30px rgba(0,0,0,.55);
+      }
+      .big-ball .big-digit{color:#8a5200;box-shadow:inset 0 2px 6px rgba(120,66,0,.25)}
+      .big-ball.settled{box-shadow:inset 0 -10px 18px rgba(120,66,0,.45), inset 0 8px 12px rgba(255,255,255,.5), 0 0 0 3px rgba(255,211,77,.85), 0 0 40px rgba(246,180,30,.55)}
+      .big-ball .spark{
+        background:
+          radial-gradient(circle at 50% 2%, rgba(255,236,160,.95) 0 4px, rgba(255,236,160,0) 6px),
+          radial-gradient(circle at 98% 50%, rgba(255,236,160,.9) 0 4px, rgba(255,236,160,0) 6px),
+          radial-gradient(circle at 50% 98%, rgba(255,236,160,.9) 0 4px, rgba(255,236,160,0) 6px),
+          radial-gradient(circle at 2% 50%, rgba(255,236,160,.9) 0 4px, rgba(255,236,160,0) 6px),
+          radial-gradient(circle at 85% 15%, rgba(255,255,255,.9) 0 3px, rgba(255,255,255,0) 5px),
+          radial-gradient(circle at 15% 85%, rgba(255,255,255,.9) 0 3px, rgba(255,255,255,0) 5px);
+      }
+      .dm-full.show{text-shadow:0 0 30px rgba(246,180,30,.85), 0 4px 18px rgba(0,0,0,.5)}
+      .draw-video-wrap{box-shadow:inset 0 0 0 2px rgba(212,175,55,.55), 0 16px 34px rgba(0,0,0,.5)}
+      @keyframes stripGlow{0%,100%{box-shadow:0 12px 28px rgba(228,2,45,.35)}50%{box-shadow:0 12px 34px rgba(246,180,30,.65)}}
+
+      /* ---------- hero: orange-to-gold radial burst + confetti (CSS only) ---------- */
+      .hero{
+        position:relative;overflow:hidden;
+        background:
+          radial-gradient(1100px 520px at 50% -30%, rgba(255,214,102,.85), rgba(255,214,102,0) 62%),
+          radial-gradient(720px 380px at 88% -10%, rgba(255,122,26,.55), rgba(255,122,26,0) 62%),
+          radial-gradient(620px 360px at 6% 115%, rgba(255,176,32,.5), rgba(255,176,32,0) 60%),
+          linear-gradient(100deg,#ff8a00 0%,#ff9d2e 38%,#f7b733 72%,#ff8a00 100%);
+        padding-top:clamp(8px,1.6vh,14px);padding-bottom:clamp(8px,1.6vh,14px);
+      }
+      /* gold coins / confetti dots */
+      .hero::before{
+        content:"";position:absolute;inset:0;pointer-events:none;
+        background-image:
+          radial-gradient(circle at 12% 28%, rgba(255,211,77,.95) 0 5px, rgba(255,211,77,0) 7px),
+          radial-gradient(circle at 22% 72%, rgba(255,255,255,.85) 0 3px, rgba(255,255,255,0) 5px),
+          radial-gradient(circle at 68% 20%, rgba(255,211,77,.9) 0 4px, rgba(255,211,77,0) 6px),
+          radial-gradient(circle at 80% 70%, rgba(255,255,255,.8) 0 3px, rgba(255,255,255,0) 5px),
+          radial-gradient(circle at 92% 32%, rgba(255,211,77,.95) 0 5px, rgba(255,211,77,0) 7px),
+          radial-gradient(circle at 38% 84%, rgba(255,211,77,.85) 0 4px, rgba(255,211,77,0) 6px),
+          radial-gradient(circle at 55% 10%, rgba(255,255,255,.75) 0 3px, rgba(255,255,255,0) 5px);
+      }
+      /* sunburst rays from below */
+      .hero::after{
+        content:"";position:absolute;inset:0;pointer-events:none;
+        background:repeating-conic-gradient(from -90deg at 50% 118%, rgba(255,255,255,.10) 0 5deg, transparent 5deg 11deg);
+      }
+      .hero .wrap{position:relative;z-index:1}
+      @media (min-width:761px){
+        .hero .wrap{grid-template-columns:minmax(0,1fr) auto;align-items:center}
+      }
+      .hero h1{color:#fff;text-shadow:0 2px 10px rgba(120,40,0,.35)}
+      .hero h1 .date{color:#ffe9a8}
+      .hero h1 .red{color:#5c0012}
+      .hero .lede{color:#fff3d6}
+      .hero .lede b{color:#fff}
+      /* dark PLAY button on the orange hero */
+      .hero-actions .btn-red{
+        background:linear-gradient(180deg,#2b3648,#0b1220 60%,#060b16);
+        color:#ffd34d;box-shadow:0 8px 20px rgba(11,18,32,.45);
+      }
+      .hero-actions .btn-red:hover{background:linear-gradient(180deg,#3a4a61,#16233c 60%,#0b1220)}
+      .hero-actions .btn-outline-w{border-color:rgba(255,255,255,.85);color:#fff;background:transparent}
+      .hero-actions .btn-outline-w:hover{background:rgba(255,255,255,.16)}
+      /* jackpot figure in very large red type, on a white card */
+      .hero-jackpot{
+        flex:none;background:#fff;border-radius:16px;
+        border:1.5px solid rgba(212,175,55,.6);
+        box-shadow:0 14px 30px rgba(120,60,0,.28);
+        padding:clamp(8px,1.6vh,12px) clamp(16px,2vw,24px);
+        text-align:center;min-width:clamp(210px,22vw,260px);
+      }
+      .hero-jackpot .hj-label{display:block;font-family:var(--mono);font-size:clamp(.58rem,1.35vh,.7rem);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#b97e04}
+      .hero-jackpot .hj-amt{display:block;font-family:var(--display);font-size:clamp(1.7rem, min(3.4vw, 4.6vh), 2.5rem);line-height:1.05;color:#e4022d;font-variant-numeric:tabular-nums}
+      .hero-jackpot .hj-sub{display:block;font-family:var(--mono);font-size:clamp(.58rem,1.3vh,.68rem);font-weight:700;letter-spacing:.08em;color:#7a8699;margin-top:2px}
+      .hero-jackpot .demo-badge{margin-top:5px}
+      @media (max-width:760px){
+        .hero-jackpot{justify-self:center;margin-top:6px;min-width:0}
+        .hero-jackpot .hj-amt{font-size:1.6rem}
+      }
+
+      /* ---------- Latest Draw Result: gold / orange balls ---------- */
+      .rball{
+        color:#7a4d00;
+        background:radial-gradient(circle at 32% 28%, #fff3c4, var(--gold-2) 42%, var(--gold) 62%, var(--gold-deep));
+        box-shadow:inset 0 -5px 9px rgba(120,66,0,.35), 0 5px 12px rgba(150,100,0,.35);
+      }
+      /* result tabs — switch the Results panel between draws (existing data only) */
+      .res-tabs{display:flex;gap:6px;flex-wrap:wrap}
+      .res-tab{
+        border:1.5px solid var(--gold-line);background:#fff;color:var(--tx-2);
+        border-radius:999px;padding:0 12px;min-height:30px;
+        font-family:var(--mono);font-size:.72rem;font-weight:700;cursor:pointer;white-space:nowrap;
+      }
+      .res-tab.active{
+        background:linear-gradient(180deg,var(--gold-2),var(--gold) 60%,var(--gold-deep));
+        color:#2a1a00;border-color:var(--gold-deep);
+      }
+
+      /* ---------- Check Your Ticket: white ticket-builder card + ball pickers ---------- */
+      .checker{
+        background:#fff;
+        border:1.5px solid rgba(212,175,55,.6);
+        box-shadow:0 14px 30px rgba(101,78,18,.14);
+        color:#1b2436;
+      }
+      .ball-pick{display:flex;gap:clamp(5px,1vw,9px);margin:2px 0 8px}
+      .pick-ball{
+        width:clamp(30px,5.4vh,38px);height:clamp(30px,5.4vh,38px);border-radius:50%;flex:none;
+        display:grid;place-items:center;
+        font-family:var(--display);font-size:clamp(1rem,2.4vh,1.25rem);color:#b98a1d;
+        background:radial-gradient(circle at 32% 28%, #fffdf4, #f3e3bb 60%, #e8d5ae);
+        border:1.5px dashed rgba(212,175,55,.7);
+      }
+      .pick-ball.filled{
+        color:#7a4d00;border-style:solid;
+        background:radial-gradient(circle at 32% 28%, #fff3c4 0%, var(--gold-2) 34%, var(--gold) 62%, var(--gold-deep) 100%);
+        box-shadow:inset 0 -4px 8px rgba(120,66,0,.35), 0 4px 10px rgba(101,78,18,.25);
+      }
+
+      /* ---------- Daily Lotto style: jackpot band becomes a dark navy card ---------- */
+      .jackpot-band{
+        background:linear-gradient(140deg,#16233c 0%,#0e1a2e 55%,#0b1220 100%);
+        border:1.5px solid rgba(212,175,55,.65);
+        box-shadow:0 16px 34px rgba(10,15,30,.45);
+        color:#f2efe6;
+      }
+      .jackpot-copy .kicker{color:#ffd34d}
+      .jackpot-copy .kicker::before{background:#ffd34d}
+      .jackpot-copy h2{color:#fff}
+      .jackpot-art .jp-word{color:#ffd34d;text-shadow:0 2px 0 rgba(0,0,0,.5)}
+      .adv b{color:#fff}
+      .adv span{color:#c7cee0}
+      .adv .ic{background:rgba(246,180,30,.16)}
+      .adv .ic svg *{stroke:#f6b41e}
+      .jackpot-band .btn-dark{
+        background:linear-gradient(180deg,var(--gold-2),var(--gold) 60%,var(--gold-deep));
+        color:#2a1a00;border-color:var(--gold-deep);
+        box-shadow:0 8px 20px rgba(246,180,30,.35);
+      }
+      .jackpot-band .btn-dark:hover{
+        background:linear-gradient(180deg,#ffdf7e,var(--gold-2) 60%,var(--gold));
+        color:#2a1a00;
+      }
+      /* gold ball + money bag inside the dark jackpot card (SVG stops re-coloured by CSS) */
+      #jpGold stop:nth-child(1){stop-color:#fff3c4}
+      #jpGold stop:nth-child(2){stop-color:#ffd34d}
+      #jpGold stop:nth-child(3){stop-color:#c78a06}
+      #bagG stop:nth-child(1){stop-color:#ffd34d}
+      #bagG stop:nth-child(2){stop-color:#c78a06}
+      .jackpot-art svg text[fill="#14507f"]{fill:#8a5200}
+      /* gold ball inside the phone mockup (SVG stop re-coloured by CSS) */
+      #phGold stop:nth-child(1){stop-color:#fff3c4}
+      #phGold stop:nth-child(2){stop-color:#ffd34d}
+      #phGold stop:nth-child(3){stop-color:#c78a06}
+      .phone-link svg text[fill="#14507f"]{fill:#8a5200}
+
+      /* ---------- High Frequency style: Single / Triple as dark navy cards ---------- */
+      .feat{
+        background:linear-gradient(140deg,#16233c,#0e1a2e 70%);
+        border:1.5px solid rgba(212,175,55,.6);
+        box-shadow:0 10px 22px rgba(10,15,30,.35);
+      }
+      .feat b{color:#fff}
+      .feat span{color:#c7cee0}
+      .feat strong{color:#ffd34d}
+
+      /* ---------- prize table + past draws + FAQ in the same language ---------- */
+      table.prizes tr.hl td{background:rgba(246,180,30,.18)}
+      .draw-card.c3{border-top-color:#e8590c}
+      .draw-card .d-val{color:#e4022d}
+      .draw-card .mini-link{color:#e4022d}
+      details.faq summary::after{color:#e4022d}
+      details.allnums summary::after{color:#e4022d}
     </style>
   </head>
   <body>
@@ -1704,6 +1954,13 @@
               <a class="btn btn-outline-w" href="#checker">Check Ticket</a>
               <a class="btn btn-outline-w" href="#prizes">Prize Table</a>
             </div>
+          </div>
+
+          <div class="hero-jackpot" aria-label="Jackpot — 1st prize QR 6,000,000">
+            <span class="hj-label">Jackpot · 1st Prize</span>
+            <span class="hj-amt">QR 6,000,000</span>
+            <span class="hj-sub">01 November 2026 · Ticket QR 80</span>
+            <span class="demo-badge">Sample / Demo</span>
           </div>
 
           <div class="hero-art" aria-hidden="true">
@@ -1823,6 +2080,11 @@
               <span class="demo-badge on-dark">Sample / Demo</span>
               <span class="src">Latest draw</span>
             </div>
+          <div class="res-tabs" role="tablist" aria-label="Choose a draw">
+            <button class="res-tab active" type="button" role="tab" aria-selected="true" data-draw="2026-11-01">01 Nov 2026</button>
+            <button class="res-tab" type="button" role="tab" aria-selected="false" data-draw="2026-10-16">16 Oct 2026</button>
+            <button class="res-tab" type="button" role="tab" aria-selected="false" data-draw="2026-10-01">01 Oct 2026</button>
+          </div>
             <div class="rp-prize">
               <span class="prize-label">1st Prize</span>
               <span class="amt">QR 6,000,000</span>
@@ -1873,6 +2135,7 @@
           <section class="checker" id="checker" aria-label="Ticket checker">
             <h2>Check Your Ticket</h2>
             <p>Enter your 6-digit number — checked against every prize tier of the sample draw. Ticket price <b style="color:#fff">QR 80</b> · 9 prize categories · 18+.</p>
+            <div class="ball-pick" id="ballPick" aria-hidden="true"><span class="pick-ball">·</span><span class="pick-ball">·</span><span class="pick-ball">·</span><span class="pick-ball">·</span><span class="pick-ball">·</span><span class="pick-ball">·</span></div>
             <form id="checkForm" novalidate>
               <div>
                 <label for="drawSelect">Draw date</label>
@@ -2092,8 +2355,8 @@
               <p class="app-tag">Today's winner balls <b>7</b> <b>305</b></p>
             </div>
             <div class="app-feats">
-              <div class="feat"><b>Single Number</b><span>Pick one digit, 1–10 · pays <strong>9.5x</strong></span></div>
-              <div class="feat"><b>Triple Number (3D)</b><span>Pick three digits, 000–999 · up to <strong>950x / 900x</strong></span></div>
+              <div class="feat"><b>Single Number</b><span>Pick one digit, 1–10 · pays <strong>9.5x</strong> · draw every 1 minute</span></div>
+              <div class="feat"><b>Triple Number (3D)</b><span>Pick three digits, 000–999 · up to <strong>950x / 900x</strong> · draw every 1 minute</span></div>
             </div>
             <a class="phone-link" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener" aria-label="Open the wini99 app — free">
               <svg viewBox="0 0 120 200" role="img" aria-label="Illustrated smartphone showing the wini99 app with its ball logo, Single and Triple number games and winner balls 7 and 305">
@@ -2929,6 +3192,61 @@
           }
           refreshSaCurrent();
         }
+
+      /* ---- result tabs: switch the Results panel between draws (existing DRAWS data only) ---- */
+      (function(){
+        var tabs = document.querySelectorAll(".res-tab");
+        if (!tabs.length) return;
+        var panel = document.querySelector(".results-panel");
+        var datePill = panel.querySelector(".date-pill");
+        var src = panel.querySelector(".rp-head .src");
+        var winNum = panel.querySelector(".rp-prize b");
+        var ballsBox = panel.querySelector(".rp-balls");
+        var balls = ballsBox.querySelectorAll(".rball");
+        var groups = panel.querySelectorAll(".rp-chips .grp");
+        /* chip groups in order: near (2), first-3 (2), last-3 (2), last-2 (1) */
+        function show(date){
+          var d = DRAWS[date];
+          if (!d) return;
+          tabs.forEach(function(t){
+            var on = t.getAttribute("data-draw") === date;
+            t.classList.toggle("active", on);
+            t.setAttribute("aria-selected", on ? "true" : "false");
+          });
+          datePill.textContent = d.label;
+          if (src) src.textContent = date === "2026-11-01" ? "Latest draw" : "Past draw";
+          if (winNum) winNum.textContent = d.first;
+          ballsBox.setAttribute("aria-label", "First prize number " + d.first.split("").join(" "));
+          d.first.split("").forEach(function(digit, i){ if (balls[i]) balls[i].textContent = digit; });
+          var sets = [d.near, d.front3, d.last3, [d.last2]];
+          groups.forEach(function(g, gi){
+            var chips = g.querySelectorAll(".num-chip");
+            (sets[gi] || []).forEach(function(n, i){ if (chips[i]) chips[i].textContent = n; });
+          });
+        }
+        tabs.forEach(function(t){
+          t.addEventListener("click", function(){ show(t.getAttribute("data-draw")); });
+        });
+      })();
+
+      /* ---- checker ball pickers: mirror the typed 6 digits into gold balls ---- */
+      (function(){
+        var input = document.getElementById("ticketInput");
+        var strip = document.getElementById("ballPick");
+        if (!input || !strip) return;
+        var balls = strip.querySelectorAll(".pick-ball");
+        function sync(){
+          var v = input.value;
+          balls.forEach(function(b, i){
+            var ch = v.charAt(i);
+            b.textContent = ch || "·";
+            b.classList.toggle("filled", !!ch);
+          });
+        }
+        input.addEventListener("input", sync);
+        sync();
+      })();
+
         tick();
         setInterval(tick, 1000);
       })();
