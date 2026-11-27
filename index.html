@@ -1683,6 +1683,7 @@
       .hero-slide.active{visibility:visible;opacity:1;pointer-events:auto}
       .hero-carousel .wrap{display:block;max-width:1220px;margin:0 auto;padding:0 20px;width:100%}
       .hero-slide.hc-alt .wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;padding:clamp(14px,2.4vh,20px) 20px clamp(24px,3vh,32px)}
+      .hero-slide .hero-actions{margin-left:0;justify-content:center}
       .hc-num{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,8vw,3.8rem);line-height:1;color:#0b1220;letter-spacing:.04em}
       .hc-balls{justify-content:center}
       .hc-prize{font-weight:800;font-size:clamp(1.1rem,2.6vw,1.5rem);color:#5c0012}
@@ -1703,7 +1704,7 @@
       @media (max-width:760px){.hc-prev,.hc-next{display:none}}
       /* UAE-style jackpot slide (slide 1) — layout from the reference, wini99 data only */
       .hero-slide.hc-uae{background:radial-gradient(120% 140% at 88% -10%,rgba(255,255,255,.38),transparent 46%),linear-gradient(115deg,#7f1d1d 0%,#b91c1c 34%,#ea580c 68%,#f59e0b 100%)}
-      .hero-slide.hc-uae .hc-uae-wrap{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,46px);padding:clamp(14px,2.4vh,22px) clamp(18px,2.4vw,30px) clamp(24px,3vh,32px)}
+      .hero-slide.hc-uae .hc-uae-wrap{display:flex;align-items:center;justify-content:center;gap:clamp(24px,4vw,72px);padding:clamp(14px,2.4vh,22px) clamp(18px,2.4vw,30px) clamp(24px,3vh,32px)}
       .hc-uae-left{display:flex;flex-direction:column;align-items:flex-start;gap:10px;max-width:640px}
       .hc-uae-eyebrow{font-family:var(--head);font-style:italic;font-weight:700;font-size:clamp(1rem,2.2vw,1.35rem);color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.3)}
       .hc-uae-head{font-family:var(--display);font-weight:400;font-size:clamp(2rem,5.4vw,3.4rem);line-height:1;color:#fff;margin:0;letter-spacing:.02em;text-shadow:0 3px 0 rgba(120,40,0,.25),0 12px 30px rgba(0,0,0,.35)}
@@ -1715,7 +1716,7 @@
       .hc-uae-badge-big b{font-size:1.7rem}
       .hc-uae-pill{display:inline-block;background:linear-gradient(180deg,#ffd34d,#f6b41e);color:#5c1a00;font-weight:800;font-size:.85rem;letter-spacing:.06em;border-radius:999px;padding:6px 16px;box-shadow:0 6px 14px rgba(0,0,0,.3)}
       .hc-uae-right{display:flex;flex-direction:column;align-items:center;gap:10px}
-      .hc-uae-cal{width:232px;background:linear-gradient(180deg,#fffdf5,#f5eeda);border-radius:12px;padding:10px 12px 12px;box-shadow:0 16px 30px rgba(0,0,0,.4)}
+      .hc-uae-cal{width:252px;background:linear-gradient(180deg,#fffdf5,#f5eeda);border-radius:12px;padding:10px 12px 12px;box-shadow:0 16px 30px rgba(0,0,0,.4)}
       .hc-uae-cal-title{display:block;text-align:center;font-family:var(--head);font-weight:800;font-size:1rem;color:#5c1a00;letter-spacing:.08em;margin-bottom:6px}
       .hc-uae-cal-days,.hc-uae-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
       .hc-uae-cal-days span{font-family:var(--mono);font-size:.56rem;font-weight:700;letter-spacing:.04em;color:#8a6d1f;text-transform:uppercase}
@@ -2540,13 +2541,6 @@
           ev.preventDefault();
           runTicketCheck(input.value.trim(), select.value, out);
         });
-        document.querySelectorAll("[data-check-draw]").forEach(function(b){
-          b.addEventListener("click", function(){
-            select.value = b.getAttribute("data-check-draw");
-            document.getElementById("checker").scrollIntoView({ behavior: "smooth", block: "center" });
-            setTimeout(function(){ input.focus({ preventScroll: true }); }, 450);
-          });
-        });
       })();
 
       /* ---- ticket-check modal: answers in place, never scrolls to the lower checker ---- */
@@ -2557,17 +2551,29 @@
         var select = document.getElementById("ticketModalDraw");
         var out = document.getElementById("ticketModalResult");
         var lastFocus = null;
+        var savedScrollY = 0;
         function openTicketModal(){
           lastFocus = document.activeElement;
+          savedScrollY = window.scrollY;
+          document.documentElement.style.overflow = "hidden";
           modal.hidden = false;
           input.focus({ preventScroll: true });
         }
         function closeTicketModal(){
           modal.hidden = true;
+          document.documentElement.style.overflow = "";
+          if (window.scrollY !== savedScrollY) window.scrollTo({ top: savedScrollY, behavior: "instant" });
           if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
         }
         document.querySelectorAll("[data-open-ticket]").forEach(function(a){
           a.addEventListener("click", function(ev){ ev.preventDefault(); openTicketModal(); });
+        });
+        document.querySelectorAll("[data-check-draw]").forEach(function(b){
+          b.addEventListener("click", function(ev){
+            ev.preventDefault();
+            select.value = b.getAttribute("data-check-draw");
+            openTicketModal();
+          });
         });
         input.addEventListener("input", function(){ input.value = input.value.replace(/\D/g, "").slice(0, 6); });
         form.addEventListener("submit", function(ev){
@@ -2728,7 +2734,7 @@
         function openModal(){
           lastFocus = document.activeElement;
           modal.hidden = false;
-          document.getElementById("winnerModalClose").focus();
+          document.getElementById("winnerModalClose").focus({ preventScroll: true });
         }
         function closeModal(){
           modal.hidden = true;
@@ -2942,7 +2948,7 @@
             ? "Demo preview — the real 2-minute countdown, compressed into a few seconds. This preview does not change the real draw time or the real results."
             : "The draw time has arrived — revealing the winning ticket number. Sample / demo number until official Qatar draw data is available.";
           modal.hidden = false;
-          document.getElementById("drawModalClose").focus();
+          document.getElementById("drawModalClose").focus({ preventScroll: true });
           if (demo) runCountdownPhase(); else { clearAll(); reveal(); }
         }
         function closePreview(){
@@ -3024,7 +3030,7 @@
           saMsg.textContent = "";
           saCdMsg.textContent = "";
           saPanel.hidden = false;
-          document.getElementById("saClose").focus();
+          document.getElementById("saClose").focus({ preventScroll: true });
         }
         function closeSa(){
           saPanel.hidden = true;
