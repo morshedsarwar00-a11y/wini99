@@ -1671,6 +1671,76 @@
       .app-head h2 em{
         background-image:linear-gradient(180deg,#3d9bef 0%, var(--gold-deep) 55%, #14507f 105%);
       }
+      /* ---------- sliding hero cover (2026-11-27) ----------
+         3 slides stacked in one grid cell (constant height, so rotating
+         never shifts the layout) and switched with visibility only —
+         never with a CSS animation, so a stalled animation clock can
+         never leave the active slide invisible, and no slide can ever
+         sit inside another. The carousel replaces the static
+         jackpot-banner poster, so the page does not grow. */
+      .hero-carousel{position:relative;z-index:1;display:grid;width:100%;flex:none;overflow:hidden}
+      .hero-slide{grid-area:1/1;display:flex;flex-direction:column;justify-content:center;visibility:hidden;opacity:0;pointer-events:none}
+      .hero-slide.active{visibility:visible;opacity:1;pointer-events:auto}
+      .hero-carousel .wrap{display:block;max-width:1220px;margin:0 auto;padding:0 20px;width:100%}
+      .hero-slide.hc-alt .wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;padding:clamp(14px,2.4vh,20px) 20px clamp(24px,3vh,32px)}
+      .hc-num{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,8vw,3.8rem);line-height:1;color:#0b1220;letter-spacing:.04em}
+      .hc-balls{justify-content:center}
+      .hc-prize{font-weight:800;font-size:clamp(1.1rem,2.6vw,1.5rem);color:#5c0012}
+      .hc-title{font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,4.6vw,2.6rem);line-height:1.15;color:#fff;margin:0;letter-spacing:.02em}
+      .hc-title b{color:#ffe9a8}
+      .hc-sub{color:#fff3d6;font-size:clamp(.9rem,2vw,1.05rem);margin:0}
+      .hero-slide.hc-res{background:linear-gradient(180deg,#fffdf5,#ffefd0)}
+      .hero-slide.hc-res .kicker{color:#b91c1c}
+      .hero-slide.hc-app{background:linear-gradient(150deg,#16233c 0%,#0e1a2e 60%,#0b1220 100%)}
+      .hc-prev,.hc-next{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:42px;height:42px;min-height:42px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);background:rgba(11,18,32,.35);color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+      .hc-prev{left:10px}
+      .hc-next{right:10px}
+      @media (min-width:761px){.hero-carousel{padding:0 64px}}
+      .hc-prev:hover,.hc-next:hover{background:rgba(11,18,32,.65)}
+      .hc-dots{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);z-index:3;display:flex;gap:7px}
+      .hc-dot{width:9px;height:9px;border-radius:999px;border:none;background:rgba(255,255,255,.65);box-shadow:0 0 0 1px rgba(0,0,0,.28);cursor:pointer;padding:0;min-height:0}
+      .hc-dot.active{width:26px;background:#fff}
+      @media (max-width:760px){.hc-prev,.hc-next{display:none}}
+      /* UAE-style jackpot slide (slide 1) — layout from the reference, wini99 data only */
+      .hero-slide.hc-uae{background:radial-gradient(120% 140% at 88% -10%,rgba(255,255,255,.38),transparent 46%),linear-gradient(115deg,#7f1d1d 0%,#b91c1c 34%,#ea580c 68%,#f59e0b 100%)}
+      .hero-slide.hc-uae .hc-uae-wrap{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,46px);padding:clamp(14px,2.4vh,22px) clamp(18px,2.4vw,30px) clamp(24px,3vh,32px)}
+      .hc-uae-left{display:flex;flex-direction:column;align-items:flex-start;gap:10px;max-width:640px}
+      .hc-uae-eyebrow{font-family:var(--head);font-style:italic;font-weight:700;font-size:clamp(1rem,2.2vw,1.35rem);color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+      .hc-uae-head{font-family:var(--display);font-weight:400;font-size:clamp(2rem,5.4vw,3.4rem);line-height:1;color:#fff;margin:0;letter-spacing:.02em;text-shadow:0 3px 0 rgba(120,40,0,.25),0 12px 30px rgba(0,0,0,.35)}
+      .hc-uae-badges{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+      .hc-uae-badge{display:flex;flex-direction:column;align-items:center;gap:2px;background:linear-gradient(180deg,#fff7cc,#ffd34d 55%,#f6b41e);border:2px solid #fff3c4;border-radius:12px;padding:8px 14px;box-shadow:0 8px 18px rgba(0,0,0,.35),inset 0 1px 0 #fff;min-width:118px}
+      .hc-uae-badge b{font-family:var(--display);font-weight:400;font-size:1.25rem;line-height:1;color:#b91c1c;letter-spacing:.02em}
+      .hc-uae-badge i{font-style:normal;font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#7a4d00}
+      .hc-uae-badge-big{padding:10px 20px;min-width:176px}
+      .hc-uae-badge-big b{font-size:1.7rem}
+      .hc-uae-pill{display:inline-block;background:linear-gradient(180deg,#ffd34d,#f6b41e);color:#5c1a00;font-weight:800;font-size:.85rem;letter-spacing:.06em;border-radius:999px;padding:6px 16px;box-shadow:0 6px 14px rgba(0,0,0,.3)}
+      .hc-uae-right{display:flex;flex-direction:column;align-items:center;gap:10px}
+      .hc-uae-cal{width:232px;background:linear-gradient(180deg,#fffdf5,#f5eeda);border-radius:12px;padding:10px 12px 12px;box-shadow:0 16px 30px rgba(0,0,0,.4)}
+      .hc-uae-cal-title{display:block;text-align:center;font-family:var(--head);font-weight:800;font-size:1rem;color:#5c1a00;letter-spacing:.08em;margin-bottom:6px}
+      .hc-uae-cal-days,.hc-uae-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+      .hc-uae-cal-days span{font-family:var(--mono);font-size:.56rem;font-weight:700;letter-spacing:.04em;color:#8a6d1f;text-transform:uppercase}
+      .hc-uae-cal-days span.hc-uae-wd{color:#b91c1c}
+      .hc-uae-cal-grid span{font-family:var(--mono);font-size:.78rem;font-weight:600;color:#3d2c00;height:24px;display:grid;place-items:center;border-radius:50%}
+      .hc-uae-cal-grid span.hc-uae-mute{opacity:.32}
+      .hc-uae-cal-grid span.hc-uae-draw{background:radial-gradient(circle at 35% 30%,#fff3c4,#ffd34d 55%,#c78a06);color:#5c1a00;font-weight:800;box-shadow:0 2px 6px rgba(120,66,0,.45)}
+      .hc-uae-clock{display:flex;align-items:center;gap:8px}
+      .hc-uae-clock-tag{background:#b91c1c;color:#fff;font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-radius:6px;padding:4px 8px}
+      .hc-uae-clock-v{font-family:var(--mono);font-weight:700;font-size:1.25rem;color:#fff;background:#1b2436;border:1.5px solid rgba(255,211,77,.6);border-radius:8px;padding:4px 12px;box-shadow:0 6px 14px rgba(0,0,0,.35)}
+      /* small screens: stack the jackpot slide and shrink the calendar so the
+         carousel stays compact on mobile */
+      @media (max-width:760px){
+        .hero-slide.hc-uae .hc-uae-wrap{flex-direction:column;gap:10px;padding:12px 16px 24px}
+        .hc-uae-left{align-items:center;text-align:center;gap:8px}
+        .hc-uae-badges{justify-content:center;gap:8px}
+        .hc-uae-badge{min-width:104px;padding:6px 10px}
+        .hc-uae-badge-big{min-width:150px}
+        .hc-uae-head{font-size:clamp(1.7rem,8vw,2.2rem)}
+        .hc-uae-right{flex-direction:row;align-items:center;gap:12px}
+        .hc-uae-cal{width:168px;padding:8px 10px 10px}
+        .hc-uae-cal-grid span{height:20px;font-size:.7rem}
+        .hc-uae-clock{flex-direction:column;gap:6px}
+      }
+
     </style>
   </head>
   <body>
@@ -1703,12 +1773,56 @@
         </div>
       </header>
 
-      <!-- Jackpot promo banner (2026-11-18, user-supplied artwork) — below the logo. -->
-      <div class="jackpot-banner">
-        <div class="wrap">
-          <a href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" aria-label="Play the wini99 number game — pick 1-10 for 9.5x, 000-999 for 950x">
-            <img src="jackpot-banner.jpg" alt="The Multiplier Jackpot — choose 1 to 10 for 9.5x or 000 to 999 for 950x. Jackpot winner, 950x multiplier.">
-          </a>
+      <!-- Sliding hero cover (2026-11-27) — replaces the static jackpot-banner poster
+           (jackpot-banner.jpg stays in the repo; the app link lives on slide 3).
+           3 slides, wini99 data only — no UAE brand, dates or amounts. -->
+      <div class="hero-carousel" id="heroCarousel">
+        <div class="hero-slide hc-uae active" data-slide="0" aria-hidden="false">
+          <div class="wrap hc-uae-wrap">
+            <div class="hc-uae-left">
+              <span class="hc-uae-eyebrow">Now Every Month</span>
+              <h2 class="hc-uae-head">1st &amp; 16th</h2>
+              <div class="hc-uae-badges">
+                <span class="hc-uae-badge"><b>QR 100,000</b><i>2nd Prize</i></span>
+                <span class="hc-uae-badge hc-uae-badge-big"><b>QR 6,000,000</b><i>Grand Prize</i></span>
+                <span class="hc-uae-badge"><b>QR 80,000</b><i>3rd Prize</i></span>
+              </div>
+              <span class="hc-uae-pill">Two Draws Every Month</span>
+            </div>
+            <div class="hc-uae-right">
+              <div class="hc-uae-cal" role="img" aria-label="December 2026 calendar — wini99 draws on the 1st and 16th">
+                <span class="hc-uae-cal-title">December 2026</span>
+                <span class="hc-uae-cal-days"><span>Mon</span><span class="hc-uae-wd">Tue</span><span class="hc-uae-wd">Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></span>
+                <span class="hc-uae-cal-grid"><span class="hc-uae-mute">30</span><span class="hc-uae-draw">1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span class="hc-uae-draw">16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span class="hc-uae-mute">1</span><span class="hc-uae-mute">2</span><span class="hc-uae-mute">3</span></span>
+              </div>
+              <div class="hc-uae-clock"><span class="hc-uae-clock-tag">Draw Time</span><span class="hc-uae-clock-v">2:30 PM</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-slide hc-alt hc-res" data-slide="1" aria-hidden="true">
+          <div class="wrap">
+            <span class="kicker">wini99 · Latest Draw — 01 November 2026</span>
+            <span class="hc-num">423224</span>
+            <div class="rp-balls hc-balls" role="img" aria-label="First prize number 4 2 3 2 2 4"><span class="rball">4</span><span class="rball">2</span><span class="rball">3</span><span class="rball">2</span><span class="rball">2</span><span class="rball">4</span></div>
+            <span class="hc-prize">1st Prize · QR 6,000,000</span>
+            <span class="demo-badge">Sample / Demo</span>
+            <div class="hero-actions"><a class="btn btn-red" href="#checker" data-open-ticket>Check Ticket</a><a class="btn btn-dark" href="#prizes">Prize Table</a></div>
+          </div>
+        </div>
+        <div class="hero-slide hc-alt hc-app" data-slide="2" aria-hidden="true">
+          <div class="wrap">
+            <span class="kicker">wini99 app · Free</span>
+            <h2 class="hc-title">Single <b>1–10</b> · 9.5x<br>Triple <b>000–999</b> · 950x</h2>
+            <p class="hc-sub">Draw every 1 minute — play in the wini99 app. Ticket QR 80 · 9 prize categories.</p>
+            <div class="hero-actions"><a class="btn btn-red" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">Open wini99 app</a><a class="btn btn-outline-w" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">Free Download</a></div>
+          </div>
+        </div>
+        <button class="hc-prev" type="button" aria-label="Previous slide">‹</button>
+        <button class="hc-next" type="button" aria-label="Next slide">›</button>
+        <div class="hc-dots" role="tablist" aria-label="Hero slides">
+          <button class="hc-dot active" type="button" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+          <button class="hc-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+          <button class="hc-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 3"></button>
         </div>
       </div>
 
@@ -3009,6 +3123,47 @@
         }
         tick();
         setInterval(tick, 1000);
+      })();
+      /* ---- sliding hero cover: 3 slides, auto-rotate, dots + arrows + touch swipe ---- */
+      (function(){
+        var car = document.getElementById("heroCarousel");
+        if (!car) return;
+        var slides = car.querySelectorAll(".hero-slide");
+        var dots = car.querySelectorAll(".hc-dot");
+        var prev = car.querySelector(".hc-prev");
+        var next = car.querySelector(".hc-next");
+        var i = 0, timer = null, tx = null;
+        function show(n){
+          i = (n + slides.length) % slides.length;
+          slides.forEach(function(s, k){
+            s.classList.toggle("active", k === i);
+            s.setAttribute("aria-hidden", k === i ? "false" : "true");
+          });
+          dots.forEach(function(d, k){
+            d.classList.toggle("active", k === i);
+            d.setAttribute("aria-selected", k === i ? "true" : "false");
+          });
+        }
+        function auto(){
+          stop();
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          timer = setInterval(function(){ show(i + 1); }, 6000);
+        }
+        function stop(){ if (timer){ clearInterval(timer); timer = null; } }
+        if (prev) prev.addEventListener("click", function(){ stop(); show(i - 1); auto(); });
+        if (next) next.addEventListener("click", function(){ stop(); show(i + 1); auto(); });
+        dots.forEach(function(d, k){ d.addEventListener("click", function(){ stop(); show(k); auto(); }); });
+        car.addEventListener("mouseenter", stop);
+        car.addEventListener("mouseleave", auto);
+        car.addEventListener("touchstart", function(ev){ tx = ev.touches[0].clientX; stop(); }, {passive:true});
+        car.addEventListener("touchend", function(ev){
+          if (tx === null) return;
+          var dx = ev.changedTouches[0].clientX - tx;
+          tx = null;
+          if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
+          auto();
+        }, {passive:true});
+        auto();
       })();
     </script>
   </body>
