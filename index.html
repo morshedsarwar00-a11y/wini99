@@ -159,21 +159,7 @@
       @media (max-width:1020px){ nav.main a:not(.keep){display:none} }
       @media (max-width:560px){ .brand .sub{font-size:.5rem;letter-spacing:.16em} .btn-app{padding:0 13px;font-size:.85rem} .cta-extra{display:none} }
 
-      /* ---------- jackpot promo banner (2026-11-18) ---------- */
-      /* User-supplied poster, below the header logo; links to the
-         wini99 number-game app. Full poster (not a cropped strip).
-         Page 1 is a fixed 100dvh flex column with zero slack, so the
-         poster would crush the hero and paint the heading over it —
-         page 1 therefore grows past one viewport (min-height) instead
-         of squeezing: the first screen scrolls a little on phones,
-         nothing overlaps or gets cut. Desktop width capped at 900px
-         so the poster does not bury the results. */
       .page1{height:auto;min-height:100vh;min-height:100dvh}
-      .jackpot-banner{flex:none;padding:14px 0 6px}
-      .jackpot-banner .wrap{max-width:1220px}
-      .jackpot-banner a{display:block;border-radius:18px;overflow:hidden;box-shadow:0 14px 34px rgba(0,0,0,.45)}
-      .jackpot-banner img{display:block;width:100%;height:auto}
-      @media (max-width:560px){ .jackpot-banner{padding:10px 0 4px} .jackpot-banner a{border-radius:12px} }
 
       /* ---------- hero ---------- */
       .hero{
@@ -1662,12 +1648,13 @@
         background-image:linear-gradient(180deg,#3d9bef 0%, var(--gold-deep) 55%, #14507f 105%);
       }
       /* ---------- sliding hero cover (2026-11-27) ----------
-         3 slides stacked in one grid cell (constant height, so rotating
+         4 slides stacked in one grid cell (constant height, so rotating
          never shifts the layout) and switched with visibility only —
          never with a CSS animation, so a stalled animation clock can
          never leave the active slide invisible, and no slide can ever
-         sit inside another. The carousel replaces the static
-         jackpot-banner poster, so the page does not grow. */
+         sit inside another. Slide 4 (2026-11-28) is the multiplier
+         jackpot poster, moved into the carousel — the poster no longer
+         sits below it, so the page does not grow. */
       .hero-carousel{position:relative;z-index:1;display:grid;width:100%;flex:none;overflow:hidden}
       .hero-slide{grid-area:1/1;display:flex;flex-direction:column;justify-content:center;visibility:hidden;opacity:0;pointer-events:none}
       .hero-slide.active{visibility:visible;opacity:1;pointer-events:auto}
@@ -1683,6 +1670,19 @@
       .hero-slide.hc-res{background:linear-gradient(180deg,#fffdf5,#ffefd0)}
       .hero-slide.hc-res .kicker{color:#b91c1c}
       .hero-slide.hc-app{background:linear-gradient(150deg,#16233c 0%,#0e1a2e 60%,#0b1220 100%)}
+      /* ---------- jackpot banner slide (slide 4, 2026-11-28) ----------
+         The multiplier jackpot poster moved INTO the carousel as a
+         slide (it was a full-width section below it). The poster is
+         2048x1144 (1.79:1) while the carousel box is wide and short
+         (slide 1 drives the height), so the image is fitted with
+         max-width/max-height — nothing is ever cropped or distorted
+         and the key text stays legible at every size. The link fills
+         the slide with bottom padding so the image never slides under
+         the dots; the image itself is a framed card (radius + shadow)
+         on a cream background that matches the poster's own cream. */
+      .hero-slide.hc-banner{display:block;padding:0;background:linear-gradient(180deg,#fffdf5,#f9ecc8)}
+      .hc-banner-link{display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:6px 12px 26px;box-sizing:border-box}
+      .hc-banner-link img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;border-radius:14px;box-shadow:0 14px 34px rgba(0,0,0,.35)}
       .hc-prev,.hc-next{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:42px;height:42px;min-height:42px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);background:rgba(11,18,32,.35);color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
       .hc-prev{left:10px}
       .hc-next{right:10px}
@@ -1738,11 +1738,14 @@
          Desktop is untouched — every rule here lives inside
          max-width:760px, and this block sits last in the stylesheet so
          it wins over the earlier mobile rules at equal specificity.
-         Goal: shrink the first-screen stack on mobile (header + carousel
-         + banner) so more of the RESULTS card shows in the first
+         Goal: shrink the first-screen stack on mobile (header + carousel)
+         so more of the RESULTS card shows in the first
          viewport, without hiding or cramping anything.
          Baseline 390x844: docH 2108, header 84, carousel 345 (slide 1
          content 345 / slide 2: 283 / slide 3: 229), banner 216.
+         (The banner moved into the carousel as slide 4 on 2026-11-28,
+         so the section below the carousel — and its padding rule here —
+         are gone; the stack is now header + carousel only.)
          Slide 1 drives the shared carousel box, so it is the lever:
          clock back to a row (was stacked on mobile), tighter gaps and
          padding, headline 31px -> 27px, badge/pill padding -1px.
@@ -1761,7 +1764,6 @@
         .hc-uae-pill{padding:5px 14px}
         .hc-uae-clock{flex-direction:row;align-items:center;gap:8px}
         .hero-slide.hc-alt .wrap{gap:6px;padding:12px 20px 18px}
-        .jackpot-banner{padding:8px 0 4px}
       }
 
     </style>
@@ -1796,9 +1798,10 @@
         </div>
       </header>
 
-      <!-- Sliding hero cover (2026-11-27) — replaces the static jackpot-banner poster
-           (jackpot-banner.jpg stays in the repo; the app link lives on slide 3).
-           3 slides, wini99 data only — no UAE brand, dates or amounts. -->
+      <!-- Sliding hero cover (2026-11-27) — 4 slides, wini99 data only —
+           no UAE brand, dates or amounts. Slide 4 (2026-11-28) is the
+           multiplier jackpot poster (jackpot-banner.jpg), moved into
+           the carousel; it is no longer a section below it. -->
       <div class="hero-carousel" id="heroCarousel">
         <div class="hero-slide hc-uae active" data-slide="0" aria-hidden="false">
           <div class="wrap hc-uae-wrap">
@@ -1835,23 +1838,18 @@
             <div class="hero-actions"><a class="btn btn-red" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">Open wini99 app</a><a class="btn btn-outline-w" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener">Free Download</a></div>
           </div>
         </div>
+        <div class="hero-slide hc-banner" data-slide="3" aria-hidden="true">
+          <a class="hc-banner-link" href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" target="_blank" rel="noopener" aria-label="Play the wini99 number game — pick 1-10 for 9.5x, 000-999 for 950x">
+            <img src="jackpot-banner.jpg" alt="The Multiplier Jackpot — choose 1 to 10 for 9.5x or 000 to 999 for 950x. Jackpot winner, 950x multiplier.">
+          </a>
+        </div>
         <button class="hc-prev" type="button" aria-label="Previous slide">‹</button>
         <button class="hc-next" type="button" aria-label="Next slide">›</button>
         <div class="hc-dots" role="tablist" aria-label="Hero slides">
           <button class="hc-dot active" type="button" role="tab" aria-selected="true" aria-label="Slide 1"></button>
           <button class="hc-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 2"></button>
           <button class="hc-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 3"></button>
-        </div>
-      </div>
-
-      <!-- Multiplier Jackpot banner (2026-11-28) — full-width section directly
-           below the hero carousel. Uses the existing jackpot-banner.jpg file;
-           links to the wini99 app, same target as the old b168781 poster. -->
-      <div class="jackpot-banner">
-        <div class="wrap">
-          <a href="https://morshedsarwar00-a11y.github.io/wini99-flutter/" aria-label="Play the wini99 number game — pick 1-10 for 9.5x, 000-999 for 950x">
-            <img src="jackpot-banner.jpg" alt="The Multiplier Jackpot — choose 1 to 10 for 9.5x or 000 to 999 for 950x. Jackpot winner, 950x multiplier.">
-          </a>
+          <button class="hc-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 4"></button>
         </div>
       </div>
 
@@ -3307,7 +3305,7 @@
         tick();
         setInterval(tick, 1000);
       })();
-      /* ---- sliding hero cover: 3 slides, auto-rotate, dots + arrows + touch swipe ---- */
+      /* ---- sliding hero cover: 4 slides, auto-rotate, dots + arrows + touch swipe ---- */
       (function(){
         var car = document.getElementById("heroCarousel");
         if (!car) return;
