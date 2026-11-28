@@ -1730,6 +1730,37 @@
         .hc-uae-clock{flex-direction:column;gap:6px}
       }
 
+      /* ============ MOBILE-ONLY TIGHTENING (2026-11-28) ============
+         Approved by the user 2026-11-28 22:03 ("মোবাইলটা টাইট করো").
+         Desktop is untouched — every rule here lives inside
+         max-width:760px, and this block sits last in the stylesheet so
+         it wins over the earlier mobile rules at equal specificity.
+         Goal: shrink the first-screen stack on mobile (header + carousel
+         + banner) so more of the RESULTS card shows in the first
+         viewport, without hiding or cramping anything.
+         Baseline 390x844: docH 2108, header 84, carousel 345 (slide 1
+         content 345 / slide 2: 283 / slide 3: 229), banner 216.
+         Slide 1 drives the shared carousel box, so it is the lever:
+         clock back to a row (was stacked on mobile), tighter gaps and
+         padding, headline 31px -> 27px, badge/pill padding -1px.
+         Slides 2-3 get tighter wrap padding so they stay below slide 1.
+         Deliberately NOT done: one-row badges (would squeeze the Grand
+         Prize badge), per-slide carousel height (page would jump on
+         rotate), shrinking the banner image (aspect-fixed), touching
+         the topstrip, hero H1, or any text/date/price/link. */
+      @media (max-width:760px){
+        header.site .wrap{padding-top:4px;padding-bottom:4px}
+        .brand .brand-logo{height:64px}
+        .hero-slide.hc-uae .hc-uae-wrap{padding:10px 16px 18px}
+        .hc-uae-left{gap:6px}
+        .hc-uae-head{font-size:1.7rem}
+        .hc-uae-badge{padding:5px 10px}
+        .hc-uae-pill{padding:5px 14px}
+        .hc-uae-clock{flex-direction:row;align-items:center;gap:8px}
+        .hero-slide.hc-alt .wrap{gap:6px;padding:12px 20px 18px}
+        .jackpot-banner{padding:8px 0 4px}
+      }
+
     </style>
   </head>
   <body>
